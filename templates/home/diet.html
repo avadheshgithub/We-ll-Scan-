@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+    integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous" />
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Anek+Devanagari:wght@100..800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+  <link rel="stylesheet" href="/static/diet.css">
+  <link rel="stylesheet" href="/static/navbar.css">
+  <link rel="stylesheet" href="/static/footer.css">
+  <title>Diet Chart</title>
+</head>
+
+<body>
+  <header>
+    <nav>
+      <div class="menu-icon">
+        <i class="fa fa-bars fa-2x"></i>
+      </div>
+      <div class="logo">
+        <a href="/">We'll Scan</a>
+      </div>
+      <div class="menu">
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/diet">Diet Chart</a></li>
+          <li><a href="/about">About Us</a></li>
+          <li><a href="/contact">Contact Us</a></li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+  <div class="dietheading">
+    <h1>KNOW YOUR PERFECT DIET PLAN</h1>
+  </div>
+  <div class="container">
+    <div class="card">
+      <p>Want a Healthy Heart</p>
+      <button class="button" onclick="showPopup('HeartDietChartNew.jpg')"><img class="checkdiet" src="/static/image/balanced-diet.png" alt=""></button>
+    </div>
+  
+    <div class="card">
+      <p>Want the healthy kidneys</p>
+      <button class="button" onclick="showPopup('KidneyDietChartNew.jpg')"><img class="checkdiet" src="/static/image/balanced-diet.png" alt=""></button>
+    </div>
+    <div class="card">
+      <p>Want the healthy lungs</p>
+      <button class="button" onclick="showPopup('LungsDietChart.jpg')"><img class="checkdiet" src="/static/image/balanced-diet.png" alt=""></button>
+    </div>
+    <div class="card">
+      <p>Be a Diebetic Free</p>
+      <button class="button" onclick="showPopup('DiebetesietChart.jpg')"><img class="checkdiet" src="/static/image/balanced-diet.png" alt=""></button>
+    </div>
+</div>
+
+<div id="imagePopup" style="display: none;">
+    <span id="closePopup" style="cursor: pointer;"></span>
+    <div id="popupImageContainer">
+        <img id="popupImageSrc">
+    </div>
+</div>
+<footer class="footer">
+  <div class="container-footer">
+   <div class="row">
+     <div class="footer-col">
+       <h4>Services</h4>
+       <ul>
+         <li><a href="/heart">Heart Checkup</a></li>
+         <li><a href="/kidney">Kidney Checkup</a></li>
+         <li><a href="/diebetes">Diebetes Checkup</a></li>
+         <li><a href="#">Order Medecine</a></li>
+         <li><a href="#">Find Nearest Collection Centre</a></li>
+       </ul>
+     </div>
+     <div class="footer-col">
+       <h4>Company</h4>
+       <ul>
+         <li><a href="/about">About Us</a></li>
+         <li><a href="#">Careers</a></li>
+         <li><a href="#">Partner with We'll Scan</a></li>
+       </ul>
+     </div>
+     <div class="footer-col">
+       <h4>Policy Info</h4>
+       <ul>
+         <li><a href="#">Privacy Policy</a></li>
+         <li><a href="#">Terms and condition</a></li>
+         <li><a href="#">Customer Support Policy</a></li>
+         <li><a href="#">Return Policy</a></li>
+       </ul>
+     </div>
+     <div class="footer-col">
+       <h4>follow us</h4>
+       <div class="social-links">
+         <a href="#"><i class="fab fa-facebook-f"></i></a>
+         <a href="#"><i class="fab fa-twitter"></i></a>
+         <a href="#"><i class="fab fa-instagram"></i></a>
+         <a href="#"><i class="fab fa-linkedin-in"></i></a>
+       </div>
+     </div>
+   </div>
+  </div>
+</footer>
+<div
+class="text-center p-2"
+style="background-color: #ffff"
+>
+© 2024 Copyright @ We'll Scan.com
+</div>
+</body>
+
+
+
+<script>
+// Function to show the popup with the correct image
+function showPopup(imageSrc) {
+    document.getElementById('popupImageSrc').src = "/static/image/" + imageSrc;
+    var popup = document.getElementById('imagePopup');
+    popup.style.display = 'block';
+    setTimeout(function() {
+        popup.classList.add('show'); // Add the show class after a delay
+    }, 50);
+    document.body.style.overflow = 'hidden'; // Disable scrolling on the body
+}
+
+// Close the popup when the close button is clicked
+document.getElementById('closePopup').addEventListener('click', function() {
+    var popup = document.getElementById('imagePopup');
+    popup.classList.remove('show'); // Remove the show class
+    setTimeout(function() {
+        popup.style.display = 'none'; // Hide the popup after a delay
+    }, 500);
+    document.body.style.overflow = 'auto'; // Enable scrolling on the body
+});
+
+// Close the popup when the user clicks outside the image
+window.onclick = function(event) {
+    var popup = document.getElementById('imagePopup');
+    if (event.target == popup) {
+        popup.classList.remove('show'); // Remove the show class
+        setTimeout(function() {
+            popup.style.display = 'none'; // Hide the popup after a delay
+        }, 500);
+        document.body.style.overflow = 'auto'; // Enable scrolling on the body
+    }
+};
+
+// Add event listeners to all buttons in cards
+var buttons = document.querySelectorAll('.card .button');
+for (var i = 0; i < buttons.length; i++) {
+    buttons[i].addEventListener('click', function() {
+        showPopup(this.nextElementSibling.src);
+    });
+}
+</script>
+</html>

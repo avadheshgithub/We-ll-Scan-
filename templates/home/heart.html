@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Health Analyzer</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+    integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous" />
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+  <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+  <script src="https://kit.fontawesome.com/5f3f547070.js" crossorigin="anonymous"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/static/style.css">
+  <link rel="stylesheet" href="/static/navbar.css">
+  <link rel="stylesheet" href="/static/form.css">
+  <link rel="stylesheet" href="/static/footer.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      background: url(/static/image/indexbg.jpg);
+    }
+    h1 {
+      text-align: center;
+      margin-top: 20px;
+      margin-bottom: 20px;
+      font-weight: bold;
+      font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    }
+    
+    form {
+      max-width: 62%;
+      margin: 0 auto;
+      padding: 20px;
+      background-color: #fff;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      margin-bottom: 70px;
+    }
+    
+    .form-group {
+      margin-bottom: 20px;
+    }
+    
+    label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: bold;
+      font-size: 20px;
+    }
+    
+    input[type="text"],
+    select {
+      width: calc(100% - 22px);
+      padding: 10px;
+      font-size: 16px;
+      border-radius: 5px;
+      border: 2px solid #000000;
+    }
+    
+    select {
+      appearance: none;
+    }
+    
+    button {
+      width: 30%;
+      padding: 10px 20px;
+      font-size: 16px;
+      background-color: yellow;
+      color: black;
+      font-weight: bold;
+      font-size: 30px;
+      border: none;
+      border-radius: 20px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+      height: 60px;
+    
+    }
+    
+    button:hover {
+      background-color: #e3d72f;
+    }
+    
+    @media screen and (max-width: 600px) {
+      form {
+        width: 90%;
+      }
+    }
+    .heartheading h1 {
+      justify-content: center;
+      align-items: center;
+      padding-top: 45px;
+      margin-left: 21%;
+      font-family: "Anek Devanagari", sans-serif;
+      font-weight: 800;
+      margin-bottom: 28px;
+    }
+    
+    .heartheading {
+      background-color: rgb(252, 228, 55);
+      margin-left: 20%;
+      margin-right: 20%;
+      margin-bottom: 20px;
+      margin-top: 20px;
+      border-radius: 15px;
+      padding: 3px;
+  }
+  
+</style>
+</head>
+<body>
+  <header>
+    <nav>
+      <div class="menu-icon">
+        <i class="fa fa-bars fa-2x"></i>
+      </div>
+      <!-- <div class="logoimg" id="heartimg">
+        <img src="/static//image/image.png" alt="">
+      </div> -->
+      <div class="logo">
+        <a href="/">We'll Scan</a>
+      </div>
+      <div class="menu">
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/diet">Diet Chart</a></li>
+          <li><a href="/about">About Us</a></li>
+          <li><a href="/contact">Contact Us</a></li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+<body>
+
+  <!-- Website Title -->
+  <h1 class="heartheading">Heart Disease Predictor</h1>
+  <form action="heartresult" method="post">
+  
+  <!-- Text Area -->
+  <div class="ml-container">
+    <form action="" method="POST">
+      {% csrf_token %}
+
+      
+        <label for="age">Age</label>
+        <input type="text" id="age" name="age" placeholder="Your age.." required><br>
+
+
+
+        <label for="sex">Sex</label>
+        <!-- <h5 style="font-size: 15px;">1 = Male</h5>
+        <h5 style="font-size: 15px;">0 = Female</h5> -->
+        <select id="sex" name="sex" required>
+          <option value="1">Male</option>
+          <option value="0">Female</option>
+        </select><br>
+
+
+
+        <label for="cp">Chest Pain Type</label>
+        <!-- <h5 style="font-size: 15px;">0 = Typical Angina</h5>
+        <h5 style="font-size: 15px;">1 = Atypical Angina</h5>
+        <h5 style="font-size: 15px;">2 = Non-anginal Pain</h5>
+        <h5 style="font-size: 15px;">3 = Asymtomatic</h5> -->
+
+        <select id="cp" name="cp" required>
+          <option value="0">Typical Angina</option>
+          <option value="1">Atypical Angina</option>
+          <option value="2">Non-anginal Pain</option>
+          <option value="3">Asymtomatic</option>
+        </select><br>
+
+
+
+        <label for="trestbps">Resting Blood Pressure</label>
+        <input type="text" id="trestbps" name="trestbps" placeholder="A number in range [94-200] mmHg" required><br>
+
+
+
+        <label for="chol">Serum Cholesterol</label>
+        <input type="text" id="chol" name="chol" placeholder="A number in range [126-564] mg/dl" required><br>
+
+
+
+        <label for="fbs">Fasting Blood Sugar</label>
+        <!-- <h5 style="font-size: 15px;">1 = Yes</h5>
+        <h5 style="font-size: 15px;">0 = No</h5> -->
+        <select id="fbs" name="fbs" required>
+          <option value="1">Yes</option>
+          <option value="0">No</option>
+        </select><br>
+
+
+
+        <label for="restecg">Resting ECG Results</label>
+        <!-- <h5 style="font-size: 15px;">0 = Normal</h5>
+        <h5 style="font-size: 15px;">1 = Having ST-T wave abnormality</h5>
+        <h5 style="font-size: 15px;">2 = Probable or definite left ventricular
+          hypertrophy</h5> -->
+
+        <select id="restecg" name="restecg" required>
+          <option value="0">Normal</option>
+          <option value="1">Having ST-T wave abnormality</option>
+          <option value="2">Probable or definite left ventricular
+            hypertrophy</option>
+        </select><br>
+
+        <label for="thalach">Max Heart Rate </label>
+        <input type="text" id="thalach" name="thalach" placeholder="A number in range [71-202] bpm" required><br>
+
+
+
+
+        <label for="exang">Exercise-induced Angina</label>
+        <!-- <h5 style="font-size: 15px;">1 = Yes</h5>
+        <h5 style="font-size: 15px;">0 = No</h5> -->
+
+        <select id="exang" name="exang" required>
+          <option value="1">Yes</option>
+          <option value="0">No</option>
+        </select><br>
+
+
+        <label for="oldpeak">ST depression</label>
+        <input type="text" id="oldpeak" name="oldpeak" placeholder="ST depression, typically in [0-6.2]" required><br>
+
+
+
+        <label for="slope">Slope of the peak exercise ST segment</label>
+        <!-- <h5 style="font-size: 15px;">0 = Upsloping</h5>
+        <h5 style="font-size: 15px;">1 = Flat</h5>
+        <h5 style="font-size: 15px;">2 = Downsloping</h5> -->
+
+        <select id="slope" name="slope" required>
+          <option value="0">Upsloping</option>
+          <option value="1">Flat</option>
+          <option value="2">Downsloping</option>
+        </select><br>
+        
+
+        <label for="ca">Number of Major vessels</label>
+        <select id="ca" name="ca" required>
+          <option value="0">0</option>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="0">3</option>
+          <option value="1">4</option>
+        </select><br>
+                          
+
+
+        <label for="thal">Thalassemia</label> 
+        <!-- <h5 style="font-size: 15px;">0 = Normal</h5>
+        <h5 style="font-size: 15px;">1 = Fixed Defect</h5>
+        <h5 style="font-size: 15px;">2 = Reversible Defect</h5>
+        <h5 style="font-size: 15px;">3 = (Given in Dataset )</h5> -->
+
+        <select id="thal" name="thal" required>
+          <option value="0">Normal</option>
+          <option value="1">Fixed Defect</option> 
+          <option value="2">Reversible Defect</option>  
+          <option value="3">(Given in Dataset)</option>  
+
+        </select><br>
+
+      
+
+        <div class="form-group">
+          <button type="submit">Submit</button>
+        </div>
+    </form>
+  </div>
+</body>
+
+<footer class="footer">
+  <div class="container-footer">
+   <div class="row">
+     <div class="footer-col">
+       <h4>Services</h4>
+       <ul>
+         <li><a href="/heart">Heart Checkup</a></li>
+         <li><a href="/kidney">Kidney Checkup</a></li>
+         <li><a href="/diebetes">Diebetes Checkup</a></li>
+         <li><a href="#">Order Medecine</a></li>
+         <li><a href="#">Find Nearest Collection Centre</a></li>
+       </ul>
+     </div>
+     <div class="footer-col">
+       <h4>Company</h4>
+       <ul>
+         <li><a href="/about">About Us</a></li>
+         <li><a href="#">Careers</a></li>
+         <li><a href="#">Partner with We'll Scan</a></li>
+       </ul>
+     </div>
+     <div class="footer-col">
+       <h4>Policy Info</h4>
+       <ul>
+         <li><a href="#">Privacy Policy</a></li>
+         <li><a href="#">Terms and condition</a></li>
+         <li><a href="#">Customer Support Policy</a></li>
+         <li><a href="#">Return Policy</a></li>
+       </ul>
+     </div>
+     <div class="footer-col">
+       <h4>follow us</h4>
+       <div class="social-links">
+         <a href="#"><i class="fab fa-facebook-f"></i></a>
+         <a href="#"><i class="fab fa-twitter"></i></a>
+         <a href="#"><i class="fab fa-instagram"></i></a>
+         <a href="#"><i class="fab fa-linkedin-in"></i></a>
+       </div>
+     </div>
+   </div>
+  </div>
+</footer>
+<div
+class="text-center p-2"
+style="background-color: #ffff"
+>
+© 2024 Copyright @ We'll Scan.com
+</div>
+      
+
+
+</html>

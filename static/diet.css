@@ -1,0 +1,221 @@
+* {
+  font-family: Nunito, sans-serif;
+}
+
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  padding: 20px;
+  /* background-image: url("/static/image/dietbg.jpg"); */
+  background-color: green;
+  background-repeat: no-repeat;
+  background-size: cover; 
+  border-radius: 20px;
+  margin-bottom: 100px;
+}
+
+.card {
+  position: relative;
+  width: 40%;
+  height: 320px;
+  background: rgb(182, 243, 138);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 25px;
+  font-weight: bold;
+  border-radius: 30px;
+  cursor: pointer;
+  margin: 50px;
+  margin-top: 5%;
+}
+
+
+.card::before,
+.card::after {
+  position: absolute;
+  content: "";
+  width: 20%;
+  height: 20%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgb(24, 170, 5);
+  transition: all 0.2s;
+}
+
+.card::before {
+  top: 0;
+  right: 0;
+  border-radius: 0 15px 0 100%;
+}
+
+.card::after {
+  bottom: 0;
+  left: 0;
+  border-radius: 0 100%  0 15px;
+}
+
+
+.card:hover::before,
+.card:hover:after {
+  width: 100%;
+  height: 100%;
+  border-radius: 15px;
+  transition: all 0.5s;
+}
+
+.card:hover:after {
+  /* content: "DIET CHART"; */
+  margin: 20px;
+  background-image: url("/static/image/dietchartlogo.jpg");
+  background-repeat: no-repeat;
+  background-size: contain;
+ 
+}
+.card p {
+  font-family: "Jaldi", sans-serif;
+  font-weight: 800;
+  font-style: normal;
+  padding: 20px 20px;
+}
+
+.dietheading h1 {
+  justify-content: center;
+  align-items: center;
+  padding-top: 45px;
+  margin-left: 21%;
+  font-family: "Anek Devanagari", sans-serif;
+  font-weight: 800;
+  margin-bottom: 28px;
+}
+
+.dietheading{
+  background-color: white;
+  margin-left: 20%;
+  margin-right: 20%;
+  margin-bottom: 20px;
+  margin-top: 20px;
+  border-radius: 42%;
+  padding-bottom: 3px;
+  padding-top: 3px;
+}
+/*Model css*/
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  padding-top: 100px;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgb(0, 0, 0);
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+/* Modal Content */
+.modal-content {
+  background-color: #fefefe;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+}
+
+/* The Close Button */
+.close {
+  color: #aaaaaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+body {
+  line-height: 1.5;
+  font-family: 'Poppins', sans-serif;
+  background-image: url("/static/image/dietbgmain.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+
+.card .button {
+position: absolute;
+z-index: 1000;
+cursor: pointer;
+opacity: 0;
+border: none; /* Remove border */
+border-radius: 50px; /* Add rounded corners */
+text-align: center; /* Center the text */
+text-decoration: none; /* Remove underline */
+display: inline-block;
+font-size: 16px;
+transition-duration: 0.4s; /* Add a transition effect */
+margin-bottom: 5%;
+bottom: 10px;
+right: 10px;
+}
+
+.card:hover .button {
+opacity: 1; /* Make the button visible when the card is hovered */
+}
+
+
+#imagePopup {
+position: fixed;
+width: 100%;
+height: 100%;
+top: 0;
+left: 0;
+background: rgba(0, 0, 0, 0.5);
+display: flex;
+justify-content: center;
+align-items: center;
+z-index: 1000; /* Ensure the popup appears above all other elements */
+overflow: auto; /* Enable scrolling */
+opacity: 0; /* Start invisible */
+transition: opacity 0.5s ease-in-out; /* Transition effect */
+}
+
+#imagePopup.show {
+opacity: 1; /* End visible */
+}
+
+#imagePopup img {
+max-width: 60%; /* Adjust as needed */
+margin-left: 20.5%;
+margin-bottom: 50px;
+margin-top: 10%;
+}
+
+
+#closePopup {
+position: absolute;
+top: 20px;
+right: 30px;
+color: #f1f1f1;
+font-size: 35px;
+font-weight: bold;
+}
+
+#popupImageContainer {
+max-height: 10%; 
+}
+.card img{
+height: 91px;
+width: 91px;
+}
+.checkdiet{
+margin-left: 20px;
+margin-right: 20px;
+}
