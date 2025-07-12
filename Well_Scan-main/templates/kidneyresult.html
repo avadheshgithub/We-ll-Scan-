@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Result Page</title>
+    <link rel="stylesheet" href="/static/result.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+      
+      integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+  </head>
+  <body>
+    <header>
+      <div class="button-container">
+        <button id="negative-button" class="btn">Test Negative</button>
+        <button id="positive-button" class="btn">! Test Positive</button>
+      </div>
+    </header>
+
+    <main>
+      <!-- Test Negative Section -->
+      <div class="negative-section hidden" id="negative-section">
+        <div class="message-box success-box">
+          <h1>
+            <i class="fa-regular fa-heart" style="color: #41f11e"></i>
+            Congratulations! Your Test is Negative
+          </h1>
+          <p>
+            Your health indicators are within normal ranges. Keep up the good
+            work!
+          </p>
+        </div>
+
+        <h2>Recommended Health Activities</h2>
+
+        <div class="activities-box">
+          <div class="activity-grid">
+            <div class="activity-card">
+              <i class="fas fa-dumbbell icon green-icon"></i>
+              <h3>Regular Exercise</h3>
+              <p>
+                Maintain a routine of 30 minutes of moderate exercise, 5 days a
+                week.
+              </p>
+            </div>
+            <div class="activity-card">
+              <i class="fas fa-utensils icon green-icon"></i>
+              <h3>Balanced Diet</h3>
+              <p>
+                Include plenty of fruits, vegetables, and whole grains in your
+                daily meals.
+              </p>
+            </div>
+            <div class="activity-card">
+              <i class="fas fa-spa icon green-icon"></i>
+              <h3>Stress Management</h3>
+              <p>
+                Practice relaxation techniques like meditation or deep breathing
+                exercises.
+              </p>
+            </div>
+            <div class="activity-card">
+              <i class="fas fa-bed icon green-icon"></i>
+              <h3>Healthy Sleep Habits</h3>
+              <p>Aim for 7-9 hours of quality sleep each night.</p>
+            </div>
+            <div class="activity-card">
+              <i class="fas fa-tint icon green-icon"></i>
+              <h3>Stay Hydrated</h3>
+              <p>
+                Drink at least 8 glasses of water per day to maintain proper
+                hydration.
+              </p>
+            </div>
+            <div class="activity-card">
+              <i class="fas fa-brain icon green-icon"></i>
+              <h3>Mental Wellness</h3>
+              <p>
+                Take time for self-care, relaxation, and mental well-being
+                activities.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Test Positive Section -->
+      <div class="positive-section hidden" id="positive-section">
+        <div class="message-box alert-box">
+          <h1>
+            <i
+              class="fa-solid fa-triangle-exclamation"
+              style="color: #e91b0c"
+            ></i>
+            Important Health Alert
+          </h1>
+          <p>Your health indicators require attention.</p>
+          <p>
+            <strong
+              >Please consult a healthcare professional as soon as
+              possible.</strong
+            >
+          </p>
+        </div>
+
+        <!-- Bar Chart for Numerical Data -->
+        <div class="card02">
+          <div class="card02-header">
+            <i class="fas fa-clipboard"></i> Numerical Measurements
+          </div>
+
+          <div class="measurement" id="age-section">
+            <span>Age:</span>
+            <div class="progress-bar02"><div class="progress02"></div></div>
+            <span class="value02" id="age-value"></span>
+          </div>
+
+          <div class="measurement" id="blood-pressure-section">
+            <span>Blood Pressure:</span>
+            <div class="progress-bar02"><div class="progress02"></div></div>
+            <span class="value02" id="blood-pressure-value"></span>
+          </div>
+
+          <div class="measurement" id="specific-gravity-section">
+            <span>Specific Gravity:</span>
+            <div class="progress-bar02"><div class="progress02"></div></div>
+            <span class="value02" id="specific-gravity-value"></span>
+          </div>
+
+          <div class="measurement" id="blood-glucose-section">
+            <span>Blood Glucose:</span>
+            <div class="progress-bar02"><div class="progress02"></div></div>
+            <span class="value02" id="blood-glucose-value"></span>
+          </div>
+
+          <div class="measurement" id="blood-urea-section">
+            <span>Blood Urea:</span>
+            <div class="progress-bar02"><div class="progress02"></div></div>
+            <span class="value02" id="blood-urea-value"></span>
+          </div>
+
+          <div class="measurement" id="serum-creatinine-section">
+            <span>Serum Creatinine:</span>
+            <div class="progress-bar02"><div class="progress02"></div></div>
+            <span class="value02" id="serum-creatinine-value"></span>
+          </div>
+
+          <div class="measurement" id="sodium-section">
+            <span>Sodium:</span>
+            <div class="progress-bar02"><div class="progress02"></div></div>
+            <span class="value02" id="sodium-value"></span>
+          </div>
+
+          <div class="measurement" id="potassium-section">
+            <span>Potassium:</span>
+            <div class="progress-bar02"><div class="progress02"></div></div>
+            <span class="value02" id="potassium-value"></span>
+          </div>
+
+          <div class="measurement" id="hemoglobin-section">
+            <span>Hemoglobin:</span>
+            <div class="progress-bar02"><div class="progress02"></div></div>
+            <span class="value02" id="hemoglobin-value"></span>
+          </div>
+
+          <div class="measurement" id="packed-cell-volume-section">
+            <span>Packed Cell Volume:</span>
+            <div class="progress-bar02"><div class="progress02"></div></div>
+            <span class="value02" id="packed-cell-volume-value"></span>
+          </div>
+
+          <div class="measurement" id="white-blood-cells-section">
+            <span>White Blood Cells:</span>
+            <div class="progress-bar02"><div class="progress02"></div></div>
+            <span class="value02" id="white-blood-cells-value"></span>
+          </div>
+
+          <div class="measurement" id="red-blood-cells-section">
+            <span>Red Blood Cells:</span>
+            <div class="progress-bar02"><div class="progress02"></div></div>
+            <span class="value02" id="red-blood-cells-value"></span>
+          </div>
+        </div>
+
+        <!-- Clinical Observations (Non-Numerical Data) -->
+        <div class="card">
+          <div class="card-header">
+            <i class="fas fa-stethoscope"></i> Clinical Observations
+          </div>
+          <div class="grid-container">
+            <div class="grid-item" id="albumin-section">Albumin: <b></b></div>
+            <div class="grid-item" id="sugar-section">Sugar: <b></b></div>
+            <div class="grid-item" id="red-blood-cells-type-section">
+              Red Blood Cells Type: <b></b>
+            </div>
+            <div class="grid-item" id="pus-cells-section">
+              Pus Cells: <b></b>
+            </div>
+            <div class="grid-item" id="pus-cell-clumps-section">
+              Pus Cell Clumps: <b></b>
+            </div>
+            <div class="grid-item" id="bacteria-section">Bacteria: <b></b></div>
+            <div class="grid-item" id="hypertension-section">
+              Hypertension: <b></b>
+            </div>
+            <div class="grid-item" id="diabetes-section">Diabetes: <b></b></div>
+            <div class="grid-item" id="coronary-artery-disease-section">
+              Coronary Artery Disease: <b></b>
+            </div>
+            <div class="grid-item" id="appetite-section">Appetite: <b></b></div>
+            <div class="grid-item" id="pedal-edema-section">
+              Pedal Edema: <b></b>
+            </div>
+            <div class="grid-item" id="anemia-section">Anemia: <b></b></div>
+          </div>
+        </div>
+
+        <h2>Recommended Medical Tests</h2>
+
+        <div class="activities-box">
+          <div class="activity-grid">
+            <div class="activity-card">
+              <i class="fas fa-pills icon red-icon"></i>
+              <h3>Comprehensive Blood Panel</h3>
+              <p>Visit a doctor for a proper health assessment.</p>
+            </div>
+            <div class="activity-card">
+              <i class="fas fa-heartbeat icon red-icon"></i>
+              <h3>Cardiac Stress Test</h3>
+              <p>
+                Keep track of your blood pressure, sugar levels, and heart rate.
+              </p>
+            </div>
+            <div class="activity-card">
+              <i class="fas fa-apple-alt icon red-icon"></i>
+              <h3>Echocardiogram</h3>
+              <p>
+                Reduce sugar and cholesterol intake, eat more fruits and
+                vegetables.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <script src="/static/js/result.js"></script>
+
+    <script>
+      window.onload = function () {
+        // Retrieve form data from localStorage
+        const formData = JSON.parse(localStorage.getItem("formData"));
+
+        if (formData) {
+          // Update Bar Plots (Numerical Data)
+          updateProgressBar("age-section", formData.age, 120, "age-value", 50);
+          updateProgressBar(
+            "blood-pressure-section",
+            formData.blood_pressure,
+            180,
+            "blood-pressure-value",
+            120
+          );
+          updateProgressBar(
+            "specific-gravity-section",
+            formData.specific_gravity,
+            1.03,
+            "specific-gravity-value",
+            1.005
+          );
+          updateProgressBar(
+            "blood-glucose-section",
+            formData.blood_glucose,
+            200,
+            "blood-glucose-value",
+            100
+          );
+          updateProgressBar(
+            "blood-urea-section",
+            formData.blood_urea,
+            50,
+            "blood-urea-value",
+            20
+          );
+          updateProgressBar(
+            "serum-creatinine-section",
+            formData.serum_creatinine,
+            3.0,
+            "serum-creatinine-value",
+            1.2
+          );
+          updateProgressBar(
+            "sodium-section",
+            formData.sodium,
+            150,
+            "sodium-value",
+            145
+          );
+          updateProgressBar(
+            "potassium-section",
+            formData.potassium,
+            6.0,
+            "potassium-value",
+            5.0
+          );
+          updateProgressBar(
+            "hemoglobin-section",
+            formData.hemoglobin,
+            18,
+            "hemoglobin-value",
+            15
+          );
+          updateProgressBar(
+            "packed-cell-volume-section",
+            formData.packed_cell_volume,
+            50,
+            "packed-cell-volume-value",
+            40
+          );
+          updateProgressBar(
+            "white-blood-cells-section",
+            formData.white_blood_cells,
+            15000,
+            "white-blood-cells-value",
+            11000
+          );
+          updateProgressBar(
+            "red-blood-cells-section",
+            formData.red_blood_cells,
+            6.5,
+            "red-blood-cells-value",
+            5.5
+          );
+
+          // Update Clinical Observations (Non-Numerical Data)
+          updateClinicalObservation(
+            "albumin-section",
+            "Albumin",
+            mapAlbuminValue(formData.albumin)
+          );
+          updateClinicalObservation(
+            "sugar-section",
+            "Sugar",
+            mapSugarValue(formData.sugar)
+          );
+          updateClinicalObservation(
+            "red-blood-cells-type-section",
+            "Red Blood Cells Type",
+            mapRedBloodCellsType(formData.red_blood_cells_type)
+          );
+          updateClinicalObservation(
+            "pus-cells-section",
+            "Pus Cells",
+            mapPusCells(formData.pus_cells)
+          );
+          updateClinicalObservation(
+            "bacteria-section",
+            "Bacteria",
+            mapBacteria(formData.bacteria)
+          );
+          updateClinicalObservation(
+            "hypertension-section",
+            "Hypertension",
+            mapHypertension(formData.hypertension)
+          );
+          updateClinicalObservation(
+            "diabetes-section",
+            "Diabetes",
+            mapDiabetes(formData.diabetes)
+          );
+          updateClinicalObservation(
+            "coronary-artery-disease-section",
+            "Coronary Artery Disease",
+            mapCoronaryArteryDisease(formData.coronary_artery_disease)
+          );
+          updateClinicalObservation(
+            "appetite-section",
+            "Appetite",
+            mapAppetite(formData.appetite)
+          );
+          updateClinicalObservation(
+            "pedal-edema-section",
+            "Pedal Edema",
+            mapPedalEdema(formData.pedal_edema)
+          );
+          updateClinicalObservation(
+            "anemia-section",
+            "Anemia",
+            mapAnemia(formData.anemia)
+          );
+        }
+      };
+      // Function to map non-numerical values to human-readable text
+      function mapAlbuminValue(value) {
+        switch (value) {
+          case "0":
+            return "Normal (No albumin detected)";
+          case "1":
+            return "Trace (Very small amount of albumin)";
+          case "2":
+            return "Mild (Slightly elevated albumin)";
+          case "3":
+            return "Moderate (Moderately elevated albumin)";
+          case "4":
+            return "Severe (High levels of albumin)";
+          default:
+            return "Not Provided";
+        }
+      }
+
+      function mapSugarValue(value) {
+        switch (value) {
+          case "0":
+            return "Normal (No glucose detected)";
+          case "1":
+            return "Trace (Very small amount of glucose)";
+          case "2":
+            return "Mild (Slightly elevated glucose)";
+          case "3":
+            return "Moderate (Moderately elevated glucose)";
+          case "4":
+            return "Severe (High levels of glucose)";
+          default:
+            return "Not Provided";
+        }
+      }
+
+      function mapRedBloodCellsType(value) {
+        return value === "0" ? "Normal" : "Abnormal";
+      }
+
+      function mapPusCells(value) {
+        return value === "0" ? "Normal" : "Abnormal";
+      }
+
+      function mapBacteria(value) {
+        return value === "0" ? "Absent" : "Present";
+      }
+
+      function mapHypertension(value) {
+        return value === "0" ? "No" : "Yes";
+      }
+
+      function mapDiabetes(value) {
+        return value === "0" ? "No" : "Yes";
+      }
+
+      function mapCoronaryArteryDisease(value) {
+        return value === "0" ? "No" : "Yes";
+      }
+
+      function mapAppetite(value) {
+        return value === "0" ? "Unhealthy" : "Healthy";
+      }
+
+      function mapPedalEdema(value) {
+        return value === "0" ? "Absent" : "Present";
+      }
+
+      function mapAnemia(value) {
+        return value === "0" ? "Absent" : "Present";
+      }
+
+      function updateProgressBar(
+        sectionId,
+        value,
+        maxValue,
+        valueDisplayId,
+        normalLimit
+      ) {
+        const section = document.getElementById(sectionId);
+        const progressBar = section.querySelector(".progress02");
+        const valueDisplay = document.getElementById(valueDisplayId);
+
+        if (!value) return; // Skip if value is missing
+
+        const percentage = Math.min((value / maxValue) * 100, 100);
+        progressBar.style.width = `${percentage}%`;
+        progressBar.style.backgroundColor =
+          value > normalLimit ? "red" : "green";
+        valueDisplay.textContent = value;
+      }
+
+      function updateClinicalObservation(sectionId, label, value) {
+        const section = document.getElementById(sectionId);
+        section.innerHTML = `${label}: <b>${
+          value ? value : "Not Provided"
+        }</b>`;
+      }
+
+      window.onload = function () { 
+    // Retrieve the prediction result from context (passed by the view)
+    const predictionResult = "{{ prediction_result }}";
+
+    if (predictionResult === 'negative') {
+        document.getElementById("negative-button").click(); // Simulate click for negative
+        document.getElementById("positive-button").disabled = true; // Disable positive button
+    } else if (predictionResult === 'positive') {
+        document.getElementById("positive-button").click(); // Simulate click for positive
+        document.getElementById("negative-button").disabled = true; // Disable negative button
+    }
+};
+
+    
+    </script>
+  </body>
+</html>

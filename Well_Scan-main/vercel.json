@@ -1,0 +1,6 @@
+{
+  "builds": [
+    { "src": "manage.py", "use": "@vercel/python" }
+  ],
+  "installCommand": "apt-get update && apt-get install -y cmake libboost-all-dev && pip install -r requirements.txt"
+}

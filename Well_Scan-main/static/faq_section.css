@@ -1,0 +1,110 @@
+.faq-section {
+  position: relative;
+  overflow: hidden;
+  padding: 50px 20px;
+}
+
+
+/* Shape Styling */
+.faq-section .shape {
+  position: absolute;
+  right: -150px;
+  top: 0;
+  opacity: 0.2;
+}
+
+/* FAQ Item Styling */
+.faq-section .faq-content-wrapper .faq-wrapper .faq-item {
+  background: rgba(255, 255, 255, 0.3); /* Light Transparent Background */
+  border-radius: 12px;
+  margin-bottom: 15px;
+  padding: 10px;
+  box-shadow: 0px 4px 10px rgba(255, 255, 255, 0.2);
+  transition: all 0.3s ease-in-out;
+}
+
+/* FAQ Button */
+.faq-section .faq-content-wrapper .faq-wrapper .faq-item .faq-btn {
+  display: block;
+  width: 100%;
+  text-align: left;
+  font-style: italic;
+  font-size: 20px;
+  padding: 15px 50px 15px 30px;
+  position: relative;
+  color: #fff;
+  background: none;
+  border: none;
+  white-space: normal;
+  margin-bottom: 7px;
+  transition: all 0.3s ease-in-out;
+}
+
+/* Hover Effect */
+.faq-section .faq-content-wrapper .faq-wrapper .faq-item:hover {
+  background: rgba(255, 255, 255, 0.4);
+  box-shadow: 0px 6px 12px rgba(255, 255, 255, 0.25);
+}
+
+/* Plus and Minus Icon */
+.faq-section .faq-content-wrapper .faq-wrapper .faq-item .faq-btn i {
+  position: absolute;
+  right: 30px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 18px;
+  transition: transform 0.3s ease-in-out;
+  color: #fff;
+}
+
+/* Default State (Plus Sign) */
+.faq-section .faq-content-wrapper .faq-wrapper .faq-item .faq-btn i::before {
+  content: "\f068"; /* Plus icon */
+  font-family: "Font Awesome 6 Free";
+  font-weight: 900;
+}
+
+/* Collapsed State (Minus Sign) */
+.faq-section .faq-content-wrapper .faq-wrapper .faq-item .faq-btn.collapsed i::before {
+  content: "\f067"; /* Minus icon */
+}
+
+/* FAQ Card Styling */
+.card {
+  background: rgba(255, 255, 255, 0.2) !important;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-radius: 20px !important;
+  color: #fff !important;
+  padding: 20px;
+  box-shadow: 0px 4px 10px rgba(255, 255, 255, 0.2);
+  transition: all 0.3s ease-in-out;
+}
+
+/* FAQ Card Title */
+.card-title {
+  font-weight: bold;
+  text-align: center;
+  font-size: 22px;
+  color: #fff;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .faq-section {
+    padding: 30px 10px;
+  }
+
+  .faq-section .faq-content-wrapper {
+    padding: 15px;
+  }
+
+  .faq-section .faq-content-wrapper .faq-wrapper .faq-item .faq-btn {
+    font-size: 18px;
+    padding: 15px 30px;
+  }
+
+  .faq-section .faq-content-wrapper .faq-wrapper .faq-item .faq-btn i {
+    right: 20px;
+  }
+}

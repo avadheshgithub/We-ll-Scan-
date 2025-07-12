@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kidney Disease Assessment Form</title>
+    <style>
+        :root {
+            --primary: #004B4D;
+            --primary-light: #006D70;
+            --primary-lighter: #008486;
+            --secondary: #00777A;
+            --accent: #00BBBE;
+            --background: #F5F9FA;
+            --white: #ffffff;
+            --text: #2C3E50;
+            --text-light: #607D8B;
+            --error: #FF5252;
+            --success: #4CAF50;
+            --border: #E0E7E9;
+            --card-shadow: 0 8px 32px rgba(0, 75, 77, 0.08);
+            --input-shadow: 0 2px 4px rgba(0, 75, 77, 0.05);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+        }
+
+        body {
+            background: var(--background);
+            color: var(--text);
+            line-height: 1.6;
+            padding: 2rem;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-lighter) 100%);
+        }
+
+        .container {
+            width: 100%;
+            max-width: 900px;
+        }
+
+        .form-header {
+            text-align: center;
+            margin-bottom: 3rem;
+            color: var(--white);
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-header h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            letter-spacing: -0.02em;
+        }
+
+        .form-header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        .stage-container {
+            background: var(--white);
+            border-radius: 28px;
+            padding: 3rem;
+            box-shadow: var(--card-shadow);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .form-stage {
+            display: none;
+        }
+
+        .stage-nav {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 3rem;
+            background: var(--background);
+            padding: 0.75rem;
+            border-radius: 20px;
+        }
+
+        .stage-nav label {
+            flex: 1;
+            padding: 1.25rem;
+            text-align: center;
+            background: transparent;
+            border-radius: 16px;
+            color: var(--text);
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            font-weight: 750;
+            font-size: 1.1rem;
+        }
+
+        .stage-nav label:hover {
+            background: rgba(0, 75, 77, 0.05);
+        }
+
+        input[type="radio"] {
+            display: none;
+        }
+
+        #stage1:checked ~ .stage-container #stage1-content,
+        #stage2:checked ~ .stage-container #stage2-content,
+        #stage3:checked ~ .stage-container #stage3-content,
+        #stage4:checked ~ .stage-container #stage4-content {
+            display: block;
+            animation: fadeScale 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        @keyframes fadeScale {
+            from {
+                opacity: 0;
+                transform: scale(0.98) translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
+        }
+
+        #stage1:checked ~ .stage-nav label[for="stage1"],
+        #stage2:checked ~ .stage-nav label[for="stage2"],
+        #stage3:checked ~ .stage-nav label[for="stage3"],
+        #stage4:checked ~ .stage-nav label[for="stage4"] {
+            background: var(--primary);
+            color: var(--white);
+            box-shadow: 0 4px 12px rgba(0, 75, 77, 0.2);
+        }
+
+        .form-group {
+            margin-bottom: 2.5rem;
+            position: relative;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.75rem;
+            color: var(--text);
+            font-weight: 600;
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .reference-range {
+            font-size: 0.875rem;
+            color: var(--text-light);
+            margin-top: 0.5rem;
+            padding: 0.5rem;
+            background: var(--background);
+            border-radius: 8px;
+            display: inline-block;
+        }
+
+        input[type="text"],
+        input[type="number"],
+        select {
+            width: 100%;
+            padding: 1.25rem;
+            border: 2px solid var(--border);
+            border-radius: 16px;
+            font-size: 1rem;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            background: var(--white);
+            color: var(--text);
+            box-shadow: var(--input-shadow);
+        }
+
+        input[type="text"]:focus,
+        input[type="number"]:focus,
+        select:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 4px rgba(0, 75, 77, 0.1);
+        }
+
+        button {
+            background-image: linear-gradient(to top, #cfd9df 0%, #e2ebf0 100%);
+            color: var(--white);
+            border: none;
+            padding: 1.25rem 2.5rem;
+            border-radius: 16px;
+            font-size: 1.1rem;
+            font-weight: 750;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            width: 100%;
+            position: relative;
+            overflow: hidden;
+        }
+
+        button:hover {
+            background: var(--primary-light);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 16px rgba(0, 75, 77, 0.2);
+        }
+
+        button:active {
+            transform: translateY(0);
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2.5rem;
+        }
+
+        .buttons-row {
+            display: grid;
+            grid-template-columns: auto 1fr;
+            gap: 1.5rem;
+            margin-top: 3.5rem;
+        }
+
+        button[type="button"] {
+            background-image: linear-gradient(to top, #cfd9df 0%, #e2ebf0 100%);
+            color: var(--primary);
+        }
+
+        button[type="submit"] {
+            background: var(--primary);
+            color: white;
+        }
+
+        button[type="button"]:hover {
+            background: var(--border);
+            box-shadow: 0 4px 12px rgba(0, 75, 77, 0.1);
+        }
+
+        .input-container {
+            position: relative;
+        }
+
+        .input-container input:focus + .floating-label,
+        .input-container input:not(:placeholder-shown) + .floating-label {
+            transform: translateY(-140%) scale(0.85);
+            color: var(--primary);
+        }
+
+        .floating-label {
+            position: absolute;
+            pointer-events: none;
+            left: 1.25rem;
+            top: 1.25rem;
+            transition: 0.2s cubic-bezier(0.4, 0, 0.2, 1) all;
+            color: var(--text-light);
+            background: var(--white);
+            padding: 0 0.5rem;
+        }
+
+        .measurement-unit {
+            position: absolute;
+            right: 2.52rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-light);
+            font-size: 0.9rem;
+            pointer-events: none;
+        }
+
+        .progress-indicator {
+            height: 4px;
+            background: var(--border);
+            border-radius: 2px;
+            margin-bottom: 2rem;
+            overflow: hidden;
+        }
+
+        .progress-bar {
+            height: 100%;
+            background: var(--primary);
+            transition: width 0.3s ease;
+        }
+
+        #stage1:checked ~ .progress-indicator .progress-bar { width: 25%; }
+        #stage2:checked ~ .progress-indicator .progress-bar { width: 50%; }
+        #stage3:checked ~ .progress-indicator .progress-bar { width: 75%; }
+        #stage4:checked ~ .progress-indicator .progress-bar { width: 100%; }
+
+        @media (max-width: 768px) {
+            .stage-container {
+                padding: 2rem;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .buttons-row {
+                grid-template-columns: 1fr;
+            }
+
+            body {
+                padding: 1rem;
+            }
+
+            .form-header h1 {
+                font-size: 2.5rem;
+            }
+
+            .stage-nav {
+                flex-wrap: wrap;
+            }
+
+            .stage-nav label {
+                padding: 1rem;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="form-header">
+            <h1>Kidney Disease Assessment</h1>
+            <p>Complete your health profile for a comprehensive evaluation</p>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+        <form method = "post" action="{% url 'kidneyresult' %}">
+            {% csrf_token %}
+            <input type="radio" name="stage" id="stage1" checked>
+            <input type="radio" name="stage" id="stage2">
+            <input type="radio" name="stage" id="stage3">
+            <input type="radio" name="stage" id="stage4">
+
+            <div class="progress-indicator">
+                <div class="progress-bar"></div>
+            </div>
+
+            <div class="stage-nav">
+                <label for="stage1">Basic Info</label>
+                <label for="stage2">Lab Results</label>
+                <label for="stage3">Blood Analysis</label>
+                <label for="stage4">Medical History</label>
+            </div>
+
+            <div class="stage-container">
+                <div id="stage1-content" class="form-stage">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="age">Age</label>
+                            <div class="input-container">
+                                <input type="text" id="age" name="age" placeholder=" " required>
+                                <span class="floating-label">Years</span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="blood-pressure">Blood Pressure</label>
+                            <div class="input-container">
+                                <input type="text" id="blood-pressure" name="blood-pressure" placeholder=" " required>
+                                <span class="floating-label">Enter value</span>
+                                <span class="measurement-unit">mmHg</span>
+                            </div>
+                            <div class="reference-range">Normal: 120/80 mmHg</div>
+                        </div>
+                    </div>
+                    <button type="button" onclick="document.getElementById('stage2').checked = true">Continue to Lab Results</button>
+                </div>
+
+                <div id="stage2-content" class="form-stage">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="specific-gravity">Specific Gravity</label>
+                            <div class="input-container">
+                                <input type="text" id="specific-gravity" name="specific-gravity" placeholder=" " required>
+                                <span class="floating-label">Enter value</span>
+                            </div>
+                            <div class="reference-range">Normal: 1.010-1.025</div>
+                        </div>
+                        <div class="form-group">
+                            <label for="albumin">Albumin</label>
+                            <div class="input-container">
+                                <select id="albumin" name="albumin" required>
+                                    <option value="0">0 (Normal - No albumin detected)</option>
+                                    <option value="1">1 (Trace - Very small amount of albumin)</option>
+                                    <option value="2">2 (Mild - Slightly elevated albumin)</option>
+                                    <option value="3">3 (Moderate - Moderately elevated albumin)</option>
+                                    <option value="4">4 (Severe - High levels of albumin)</option>
+                                  </select>
+                                <span class="measurement-unit">g/dL</span>
+                            </div>
+                            <div class="reference-range">Normal: 3.4-5.4 g/dL</div>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="sugar">Sugar</label>
+                            <div class="input-container">
+                                <select id="sugar" name="sugar" required>
+                                    <option value="0">0 (Normal - No glucose detected)</option>
+                                    <option value="1">1 (Trace - Very small amount of glucose)</option>
+                                    <option value="2">2 (Mild - Slightly elevated glucose)</option>
+                                    <option value="3">3 (Moderate - Moderately elevated glucose)</option>
+                                    <option value="4">4 (Severe - High levels of glucose)</option>
+                                  </select>
+                                <span class="measurement-unit">mg/dL</span>
+                            </div>
+                            <div class="reference-range">Normal: 70-100 mg/dL</div>
+                        </div>
+                        <div class="form-group">
+                            <label for="blood-glucose">Blood Glucose</label>
+                            <div class="input-container">
+                                <input type="text" id="blood-glucose" name="blood-glucose" placeholder=" " required>
+                                <span class="floating-label">Enter value</span>
+                                <span class="measurement-unit">mg/dL</span>
+                            </div>
+                            <div class="reference-range">Normal: 70-100 mg/dL</div>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="blood-urea">Blood Urea</label>
+                            <div class="input-container">
+                                <input type="text" id="blood-urea" name="blood-urea" placeholder=" " required>
+                                <span class="floating-label">Enter value</span>
+                                <span class="measurement-unit">mg/dL</span>
+                            </div>
+                            <div class="reference-range">Normal: 7-20 mg/dL</div></div>
+
+                            <div class="form-group">
+                                <label for="serum-creatinine">Serum Creatinine</label>
+                                <div class="input-container">
+                                    <input type="text" id="serum-creatinine" name="serum-creatinine" placeholder=" " required>
+                                    <span class="floating-label">Enter value</span>
+                                    <span class="measurement-unit">mg/dL</span>
+                                </div>
+                                <div class="reference-range">Normal: 0.7-1.3 mg/dL</div>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="sodium">Sodium</label>
+                                <div class="input-container">
+                                    <input type="text" id="sodium" name="sodium" placeholder=" " required>
+                                    <span class="floating-label">Enter value</span>
+                                    <span class="measurement-unit">mEq/L</span>
+                                </div>
+                                <div class="reference-range">Normal: 135-145 mEq/L</div>
+                            </div>
+                            <div class="form-group">
+                                <label for="potassium">Potassium</label>
+                                <div class="input-container">
+                                    <input type="text" id="potassium" name="potassium" placeholder=" " required>
+                                    <span class="floating-label">Enter value</span>
+                                    <span class="measurement-unit">mEq/L</span>
+                                </div>
+                                <div class="reference-range">Normal: 3.5-5.0 mEq/L</div>
+                            </div>
+                        </div>
+                        <div class="buttons-row">
+                            <button type="button" onclick="document.getElementById('stage1').checked = true">Back</button>
+                            <button type="button" onclick="document.getElementById('stage3').checked = true">Continue to Blood Analysis</button>
+                        </div>
+                    </div>
+    
+                    <div id="stage3-content" class="form-stage">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="hemoglobin">Hemoglobin</label>
+                                <div class="input-container">
+                                    <input type="text" id="hemoglobin" name="hemoglobin" placeholder=" " required>
+                                    <span class="floating-label">Enter value</span>
+                                    <span class="measurement-unit">g/dL</span>
+                                </div>
+                                <div class="reference-range">Normal: 12-16 g/dL</div>
+                            </div>
+                            <div class="form-group">
+                                <label for="packed-cell-volume">Packed Cell Volume</label>
+                                <div class="input-container">
+                                    <input type="text" id="packed-cell-volume" name="packed-cell-volume" placeholder=" " required>
+                                    <span class="floating-label">Enter value</span>
+                                    <span class="measurement-unit">%</span>
+                                </div>
+                                <div class="reference-range">Normal: 36-46%</div>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="white-blood-cells">White Blood Cells</label>
+                                <div class="input-container">
+                                    <input type="text" id="white-blood-cells" name="white-blood-cells" placeholder=" " required>
+                                    <span class="floating-label">Enter value</span>
+                                    <span class="measurement-unit">K/µL</span>
+                                </div>
+                                <div class="reference-range">Normal: 4.5-11.0 K/µL</div>
+                            </div>
+                            <div class="form-group">
+                                <label for="red-blood-cells">Red Blood Cells</label>
+                                <div class="input-container">
+                                    <input type="text" id="red-blood-cells" name="red-blood-cells" placeholder=" " required>
+                                    <span class="floating-label">Enter value</span>
+                                    <span class="measurement-unit">M/µL</span>
+                                </div>
+                                <div class="reference-range">Normal: 4.2-5.9 M/µL</div>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="red-blood-cells-type">Red Blood Cells Type</label>
+                                <select id="red-blood-cells-type" name="red-blood-cells-type" required>
+                                    <option value="0">Normal</option>
+                                    <option value="1">Abnormal</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="pus-cells">Pus Cells</label>
+                                <select id="pus-cells" name="pus-cells" required>
+                                    <option value="0">Normal</option>
+                                    <option value="1">Abnormal</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="pus-cell-clumps">Pus Cell Clumps</label>
+                                <select id="pus-cell-clumps" name="pus-cell-clumps" required>
+                                    <option value="0">Not Present</option>
+                                    <option value="1">Present</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="bacteria">Bacteria</label>
+                                <select id="bacteria" name="bacteria" required>
+                                    <option value="0">Not Present</option>
+                                    <option value="1">Present</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="buttons-row">
+                            <button type="button" onclick="document.getElementById('stage2').checked = true">Back</button>
+                            <button type="button" onclick="document.getElementById('stage4').checked = true">Continue to Medical History</button>
+                        </div>
+                    </div>
+    
+                    <div id="stage4-content" class="form-stage">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="hypertension">Hypertension</label>
+                                <select id="hypertension" name="hypertension" required>
+                                    <option value="0">No</option>
+                                    <option value="1">Yes</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="diabetes">Diabetes</label>
+                                <select id="diabetes" name="diabetes" required>
+                                    <option value="0">No</option>
+                                    <option value="1">Yes</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="coronary-artery-disease">Coronary Artery Disease</label>
+                                <select id="coronary-artery-disease" name="coronary-artery-disease" required>
+                                    <option value="0">No</option>
+                                    <option value="1">Yes</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="appetite">Appetite</label>
+                                <select id="appetite" name="appetite" required>
+                                    <option value="1">Good</option>
+                                    <option value="0">Poor</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="pedal-edema">Pedal Edema</label>
+                                <select id="pedal-edema" name="pedal-edema" required>
+                                    <option value="0">No</option>
+                                    <option value="1">Yes</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="anemia">Anemia</label>
+                                <select id="anemia" name="anemia" required>
+                                    <option value="0">No</option>
+                                    <option value="1">Yes</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="buttons-row">
+                            <button type="button" onclick="document.getElementById('stage3').checked = true">Back</button>
+                            <button type="submit">Submit Assessment</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <script>
+            // Save heart disease form data in localStorage when form is submitted
+        document.querySelector("form").addEventListener("submit", function (event) {
+        
+        
+          // Capture form inputs and ensure correct data types
+          const formData = {
+            age: parseInt(document.querySelector("#age").value), // Age (number)
+            sex: document.querySelector("#sex").value, // Sex (1: Male, 0: Female)
+            cp: document.querySelector("#cp").value, // Chest Pain Type (0-3)
+            trestbps: parseInt(document.querySelector("#trestbps").value), // Resting Blood Pressure (number)
+            chol: parseInt(document.querySelector("#chol").value), // Serum Cholesterol (number)
+            fbs: document.querySelector("#fbs").value, // Fasting Blood Sugar (Yes: 1, No: 0)
+            restecg: document.querySelector("#restecg").value, // Resting ECG Results (0-2)
+            thalach: parseInt(document.querySelector("#thalach").value), // Max Heart Rate (number)
+            exang: document.querySelector("#exang").value, // Exercise-induced Angina (Yes: 1, No: 0)
+            oldpeak: parseFloat(document.querySelector("#oldpeak").value), // ST Depression (float)
+            slope: document.querySelector("#slope").value, // Slope of the Peak Exercise ST Segment (0-2)
+            ca: document.querySelector("#ca").value, // Number of Major Vessels (0-4)
+            thal: document.querySelector("#thal").value, // Thalassemia (0-3)
+          };
+        
+          // Store the heart disease data in localStorage
+          localStorage.setItem("heartData", JSON.stringify(formData));
+
+          // Redirect to the result page
+          window.location.href = "kidneyresult.html"; // Adjust URL if necessary
+        });
+        
+
+        </script>
+        
+    </body>
+    </html>

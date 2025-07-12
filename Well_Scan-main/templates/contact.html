@@ -1,0 +1,260 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" type="image/x-icon" href="static/img/logo/well_scan_logo.jpg" style="border-radius : 50%">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <link rel="stylesheet" href="/static/contact.css">
+    <link rel="stylesheet" href="/static/header_navbar.css">
+    <link rel="stylesheet" href="/static/footer.css">
+
+        <!-- Icon Font Stylesheet -->
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+    
+    <title>Contact Us</title>
+    <style>
+      .navbar-logo {
+        display: flex;
+        align-items: center;
+        gap: 12px; /* Space between logo and text */
+        text-decoration: none;
+      
+      }
+      
+      /* Circular Logo with Glassmorphism */
+      .logo-container {
+        width: 70px;
+        height: 70px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.15); /* Glass effect */
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        box-shadow: 0 4px 10px rgba(255, 255, 255, 0.3);
+        transition: all 0.4s ease-in-out;
+        overflow: hidden;
+      }
+      
+      /* Logo Image */
+      .logo-img {
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        transition: transform 0.3s ease, filter 0.3s ease;
+      }
+      
+      
+      /* Hover Effects */
+      .navbar-logo:hover .logo-container {
+        background: rgba(255, 255, 255, 0.3);
+        box-shadow: 0 6px 15px rgba(255, 255, 255, 0.4);
+        transform: scale(1.05);
+      }
+      
+      .navbar-logo:hover .logo-img {
+        transform: scale(1.1);
+      }
+      
+      
+      /* Responsive Design */
+      @media (max-width: 768px) {
+        .logo-container {
+          width: 40px;
+          height: 40px;
+        }
+        .logo-img {
+          width: 30px;
+          height: 30px;
+        }
+        .navbar-name {
+          font-size: 18px;
+        }
+      }
+          </style>
+</head>
+
+<body style="background:url({% static 'img/contact/contact_bg.jpg' %})">  
+  <div>
+    <div class="glass-navbar">
+      <div class="navbar-logo">
+        <a href="/">
+          <div class="logo-container">
+            <img src="{% static 'img/logo/well_scan_logo.jpg' %}" alt="Well Scan Logo" class="logo-img">
+          </div>
+        </a>
+      </div>        
+      <div class="menu">
+        <ul>
+          {% if user.is_authenticated %}
+          <li class="username">👋 Hello, {{ user.username }}!</li>
+          <li><a href="/">Home</a></li>
+          <li><a href="/diet">Diet Chart</a></li>
+          <li><a href="/#services">Services</a></li>
+          <li><a href="/contact">Contact Us</a></li>
+          <li><a href="/consultation">Consultation</a></li>
+  
+          <div class="admin-container">
+            <div class="admin-logo" onclick="toggleDropdown()">
+                <i class="fas fa-user-shield"></i>
+                <div class="dropdown-menu">
+                  <form method="POST" action="{% url 'logout' %}">
+                      {% csrf_token %}
+                      <button type="submit" style="background: none; border: none; cursor: pointer; color: blue;">Logout</button>
+                  </form>
+              </div>
+          </div>
+      
+          {% else %}
+          <li><a href="/">Home</a></li>
+          <li><a href="/diet">Diet Chart</a></li>
+          <li><a href="/#services">Services</a></li>
+          <li><a href="/contact">Contact Us</a></li>
+          <li><a href="/consultation">Consultation</a></li>
+  
+          <div class="admin-container">
+            <div class="admin-logo" onclick="toggleDropdown()">
+                <i class="fas fa-user-shield"></i>
+            </div>
+            <div class="dropdown-menu">
+                <a href="/login">Login</a>
+            </div>
+        </div>
+            {% endif %}
+        </ul>
+      </div>
+    </div>
+  </div>
+
+
+      <!-- Commented-out section removed for clarity -->
+      <div class="container my-4">
+        <h1 style="text-align:center; margin-bottom:20px; font-weight:bold; ">Contact Us</h1>
+          <form action="/contact/" method="post">
+              {% csrf_token %}
+              <div class="form-group">
+                  <label for="name">Name</label>
+                  <input type="text" class="form-control" id="name" name="name" required placeholder="Enter Your Name">
+              </div>
+              <div class="form-group">
+                  <label for="email">Email</label>
+                  <input type="email" class="form-control" id="email" name="email" required placeholder="Enter Your Email">
+              </div>
+              <div class="form-group">
+                  <label for="phone">Phone</label>
+                  <input type="tel" class="form-control" id="phone" name="phone" required placeholder="Enter Your Phone Number">
+              </div>
+
+              <div class="form-group">
+                <label for="desc">Message</label>
+                <input type="text" class="form-control" id="desc" name="desc" required placeholder="Describe your issue..." style="height: 60px;">
+            </div>
+
+              <div class="form-group">
+                  <input type="submit" value="Submit" onclick="openPopup()">
+                  <div class="container1">
+                      <div class="popup" id="popup">
+                          <img src="{% static 'img/contact/tick.jpg' %}">
+                          <h2>Thank You</h2>
+                          <p>Your response have been submitted. Thanks!</p>
+                          <p>We will reach you soon</p>
+                          <button type="button" onclick="closePopup()">OK</button>
+                      </div>
+                  </div>
+              </div> 
+          </form>
+      </div>
+</body>
+
+    <!-- ========================= footer start ========================= -->
+
+    <footer class="footer">
+        <div class="container-footer">
+          <div class="row">
+            <div class="footer-col">
+              <div class="footer-widget mb-30">
+                <a href="/" class="logo"
+                  ><img src="{% static 'img/logo/well_scan_logo.jpg' %}" alt="Well Scan Logo" class="logo-img"></a>
+              </div>
+            </div>
+            <div class="footer-col">
+              <h4>Services</h4>
+              <ul>
+                <li><a href="/heart">Heart Checkup</a></li>
+                <li><a href="/kidney">Kidney Checkup</a></li>
+                <li><a href="/diebetes">Diebetes Checkup</a></li>
+                <li><a href="#">Order Medecine</a></li>
+                <li><a href="#">Find Nearest Collection Centre</a></li>
+              </ul>
+            </div>
+            <div class="footer-col">
+              <h4>Company</h4>
+              <ul>
+                <li><a href="/about">About Us</a></li>
+                <li><a href="#">Careers</a></li>
+                <li><a href="#">Partner with We'll Scan</a></li>
+              </ul>
+            </div>
+            <div class="footer-col">
+              <h4>About Team</h4>
+              <ul>
+                <li><a href="/team">Team</a></li>
+              </ul>
+            </div>
+            <div class="footer-col">
+              <h4>follow us</h4>
+              <div class="social-links">
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </footer>
+      <div class="text-center p-2" style="background-color: #ffff">
+        © 2025 Copyright @ WellScan.com
+      </div>
+
+
+      <script>
+        document.addEventListener("DOMContentLoaded", function () {
+    let popup = document.getElementById("popup");
+    let form = document.querySelector("form");
+
+    function openPopup(event) {
+        event.preventDefault(); // Prevent page reload
+
+        if (areAllFieldsFilled()) {
+            popup.classList.add("open-popup");
+        } else {
+            alert("Please fill in all fields before submitting.");
+        }
+    }
+
+    function closePopup() {
+        popup.classList.remove("open-popup");
+        form.reset(); // Reset form after closing
+    }
+
+    function areAllFieldsFilled() {
+        let requiredFields = document.querySelectorAll("input[required]");
+        for (let field of requiredFields) {
+            if (!field.value.trim()) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    document.querySelector("input[type='submit']").addEventListener("click", openPopup);
+    document.querySelector(".popup button").addEventListener("click", closePopup);
+});
+    </script>
+</html>

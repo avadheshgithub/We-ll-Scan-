@@ -1,94 +1,156 @@
-We'll Scan a Healthy Organs Checkup website
+# 🚀 **Well Scan – The Ultimate AI-Powered Health Dashboard**  
 
-# 🌟 We-ll-Scan- 🌟
+![Website Screenshot 1](Dashboard.png) ![Website Screenshot 2](Models.png)
 
-## Overview 📋
+**Well Scan** is a cutting-edge AI-driven healthcare platform that offers real-time medical insights, personalized organ checkups, doctor booking, and holistic health management in one unified interface. The platform leverages advanced machine learning models and seamless web technologies to empower users with proactive healthcare solutions.  
 
-**We-ll-Scan-** is a healthcare project designed to assist people in rural areas and other regions with limited access to doctors. By analyzing previous medical test reports, our platform can predict whether you have specific diseases such as heart disease, kidney disease, or diabetes, and identify the stage of the disease. Our website also provides recommendations for further tests and medications based on the diagnosis and disease stage. Additionally, it helps you find the best nearby hospitals for treatment.
+---
 
-## Features ✨
+## 🎯 **Key Features**  
 
-- 🔍 **Disease Prediction**: Submit your previous doctor's test report to get a diagnosis for heart disease, kidney disease, or diabetes.
-- 📊 **Stage Detection**: Determine the stage of the diagnosed disease.
-- 🏥 **Nearby Hospitals**: Find and contact nearby hospitals for further consultation and treatment.
-- 🥗 **Diet Charts**: Access diet charts for heart disease, kidney disease, and diabetes.
-- 📈 **BMI Index Calculator**: Calculate your BMI using our built-in tool.
-- 🌐 **Website Sections**:
-  - 🏠 Home
-  - 📞 Contact
-  - ❓ Help
-  - 👥 Teammates
+### 1️⃣ **AI-Powered Individual Organ Checkups**  
+Upload your medical reports and receive accurate predictions of potential health risks using AI models:  
+- **Heart Checkup** – Detects cardiovascular anomalies.  
+- **Kidney Checkup** – Assesses kidney health and detects risks.  
+- **Thyroid Checkup** – Predicts thyroid disorders based on medical data.  
+- **Arthritis Checkup** – Analyzes joint health and potential arthritis risks.  
+- **Liver Checkup** – Identifies early signs of liver-related diseases.  
 
-## Technology Stack 💻
+### 2️⃣ **AI Chatbot – 24/7 Health Assistance**  
+Get instant responses to health-related questions and preventive care tips with a virtual health assistant that ensures continuous medical guidance.  
 
-- **Frontend**: HTML, CSS, JavaScript
-- **Backend**: Django, Database
-- **Machine Learning Models**: Python
-- **Notebooks**: Jupyter, Google Colab
+### 3️⃣ **Doctor Booking System**  
+- Schedule appointments with specialists from various medical fields.  
+- Securely pay for consultations through an integrated payment gateway.  
+- Receive timely reminders and updates about upcoming appointments.  
 
-## Installation and Setup ⚙️
+### 4️⃣ **Personalized User Dashboard**  
+- Access previous checkup results and medical reports.  
+- Monitor health improvements over time.  
+- Ensure data privacy and security with encrypted storage.  
 
-### Prerequisites
+### 5️⃣ **Nearby Hospital Locator**  
+Quickly locate nearby hospitals in case of emergencies to ensure timely medical assistance.  
 
-- 🐍 Python 3.x
-- 🌐 Django
-- 📦 pip (Python package installer)
+### 6️⃣ **Holistic Health Support**  
+- Personalized medication reminders.  
+- Exercise and yoga recommendations.  
+- Health charts and insights for chronic conditions (e.g., diabetes, hypertension).  
 
-### Clone the Repository
+---
 
+## 🛠️ **Tech Stack**  
+
+### 🔹 **Backend**  
+- Python  
+- Django  
+- REST APIs  
+
+### 🔹 **Frontend**  
+- HTML, CSS, JavaScript  
+- Bootstrap  
+
+### 🔹 **AI/ML Models**  
+- Scikit-learn  
+- TensorFlow/Keras  
+- Pandas & NumPy  
+
+### 🔹 **Database**  
+- PostgreSQL / MySQL  
+
+---
+
+## 📚 **System Architecture**  
 ```bash
-git clone https://github.com/avadheshgithub/We-ll-Scan-.git
-cd We-ll-Scan-
+/WELL_SCAN
+├── /Health_Checker
+│   ├── /Health_Checker
+│   │   ├── __pycache__
+│   │   ├── asgi.py
+│   │   ├── settings.py
+│   │   ├── urls.py
+│   │   └── wsgi.py
+│   ├── /Notebooks
+│   ├── /organs
+│   │   ├── __pycache__
+│   │   ├── migrations
+│   │   ├── uploads
+│   │   ├── __init__.py
+│   │   ├── admin.py
+│   │   ├── app.py
+│   │   ├── apps.py
+│   │   ├── forms.py
+│   │   ├── models.py
+│   │   ├── tests.py
+│   │   ├── urls.py
+│   │   └── views.py
+│   ├── /savedModels
+├── /static
+├── /templates
+├── db.sqlite3
+└── manage.py
 ```
 
-## Project Structure 🗂️
+---
 
-```arduino
-We-ll-Scan-
-│
-├── manage.py
-├── requirements.txt
-├── README.md
-├── static
-│   ├── css
-│   ├── js
-│   └── images
-├── templates
-│   ├── base.html
-│   ├── home.html
-│   ├── contact.html
-│   ├── help.html
-│   ├── teammates.html
-│   └── ...
-├── we_ll_scan
-│   ├── __init__.py
-│   ├── settings.py
-│   ├── urls.py
-│   ├── wsgi.py
-│   └── ...
-├── ml_models
-│   ├── heart_disease_model.py
-│   ├── kidney_disease_model.py
-│   ├── diabetes_model.py
-│   └── ...
-└── notebooks
-    ├── heart_disease_analysis.ipynb
-    ├── kidney_disease_analysis.ipynb
-    └── diabetes_analysis.ipynb
+## 📄 **Installation and Setup**  
+
+### 1. Clone the Repository  
+```bash
+git clone https://github.com/username/well-scan.git
+cd well-scan
 ```
 
-## Teammates 👥
+### 2. Create and Activate Virtual Environment  
+```bash
+python3 -m venv venv
+source venv/bin/activate   # For Linux/Mac
+# OR
+venv\Scripts\activate      # For Windows
+```
 
-- **Avadhesh Kumar Shah** 
-  - 🛠 **Role**: Machine Learning Models
-- **Abhiyank Yadav** 
-  - 🛠 **Role**: Machine Learning Models & Integration
-- **Tejas Verma** 
-  - 🛠 **Role**: Data Preprocessing
-- **Albin** 
-  - 🛠 **Role**: Documentation
-- **Vinit Karlekar** 
-  - 🛠 **Role**: Website Frontend & Backend
+### 3. Install Required Dependencies  
+```bash
+pip install -r requirements.txt
+```
+
+### 4. Apply Migrations  
+```bash
+python manage.py makemigrations
+python manage.py migrate
+```
+
+### 5. Run the Application  
+```bash
+python manage.py runserver
+```
 
 
+---
+
+## 📊 **ML Model Pipeline**  
+1. **Data Preprocessing** – Cleaning and transforming input medical data.  
+2. **Feature Engineering** – Extracting relevant features for organ-specific models.  
+3. **Model Training** – Training and validating models using Scikit-learn and TensorFlow.  
+4. **Model Integration** – Deploying models in the Django backend for real-time predictions.  
+
+---
+
+## 📚 **Project Workflow**  
+- **Data Collection & Preprocessing** – Aggregated medical datasets and applied feature engineering.  
+- **Model Development** – Built and trained models for organ health prediction.  
+- **API Integration** – Integrated ML models into the backend through REST APIs.  
+- **Frontend & Dashboard** – Developed an intuitive and responsive user interface.  
+
+---
+
+## 📧 **Contact**  
+For any queries, suggestions, or contributions, feel free to reach out:  
+- **Email:** [abhiyankyadav51@gmail.com](abhiyankyadav51@gmail.com)  
+- **GitHub Repository:** [[Repository]((https://github.com/Abhiyank51/Well_Scan2.0/))  ](https://github.com/Abhiyank51/Well_Scan2.0/)
+
+---
+
+## 📜 **License**  
+This project is licensed under the [MIT License](LICENSE).  
 

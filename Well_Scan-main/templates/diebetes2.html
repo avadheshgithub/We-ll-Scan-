@@ -1,0 +1,526 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="shortcut icon" type="image/x-icon" href="static/img/logo/well_scan_logo.jpg" style="border-radius : 50%">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/header_navbar.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <title>Diabetes Assessment Form</title>
+    <style>
+        :root {
+            --primary: #004B4D;
+            --primary-light: #006D70;
+            --primary-lighter: #008486;
+            --secondary: #00777A;
+            --accent: #00BBBE;
+            --background: #F5F9FA;
+            --white: #ffffff;
+            --text: #2C3E50;
+            --text-light: #607D8B;
+            --error: #FF5252;
+            --success: #4CAF50;
+            --border: #E0E7E9;
+            --card-shadow: 0 8px 32px rgba(0, 75, 77, 0.08);
+            --input-shadow: 0 2px 4px rgba(0, 75, 77, 0.05);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+        }
+
+        body {
+            background: var(--background);
+            color: var(--text);
+            line-height: 1.6;
+            padding: 2rem;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-lighter) 100%);
+        }
+
+        .container {
+            width: 100%;
+            max-width: 900px;
+            margin-top:10%;
+
+        }
+
+        .form-header {
+            text-align: center;
+            margin-bottom: 3rem;
+            color: var(--white);
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-header h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            letter-spacing: -0.02em;
+            color:white;
+
+        }
+
+        .form-header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        .stage-container {
+            background: var(--white);
+            border-radius: 28px;
+            padding: 3rem;
+            box-shadow: var(--card-shadow);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .form-stage {
+            display: none;
+        }
+
+        .stage-nav {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 3rem;
+            background: var(--background);
+            padding: 0.75rem;
+            border-radius: 20px;
+        }
+
+        .stage-nav label {
+            flex: 1;
+            padding: 1.25rem;
+            text-align: center;
+            background: transparent;
+            border-radius: 16px;
+            color: var(--text);
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            font-weight: 750;
+            font-size: 1.1rem;
+        }
+
+        .stage-nav label:hover {
+            background: rgba(0, 75, 77, 0.05);
+        }
+
+        input[type="radio"] {
+            display: none;
+        }
+
+        #stage1:checked ~ .stage-container #stage1-content,
+        #stage2:checked ~ .stage-container #stage2-content {
+            display: block;
+            animation: fadeScale 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        @keyframes fadeScale {
+            from {
+                opacity: 0;
+                transform: scale(0.98) translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
+        }
+
+        #stage1:checked ~ .stage-nav label[for="stage1"],
+        #stage2:checked ~ .stage-nav label[for="stage2"] {
+            background: var(--primary);
+            color: var(--white);
+            box-shadow: 0 4px 12px rgba(0, 75, 77, 0.2);
+        }
+
+        .form-group {
+            margin-bottom: 2.5rem;
+            position: relative;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.75rem;
+            color: var(--text);
+            font-weight: 600;
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .reference-range {
+            font-size: 0.875rem;
+            color: var(--text-light);
+            margin-top: 0.5rem;
+            padding: 0.5rem;
+            background: var(--background);
+            border-radius: 8px;
+            display: inline-block;
+        }
+
+        input[type="text"],
+        input[type="number"],
+        select {
+            width: 100%;
+            padding: 1.25rem;
+            border: 2px solid var(--border);
+            border-radius: 16px;
+            font-size: 1rem;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            background: var(--white);
+            color: var(--text);
+            box-shadow: var(--input-shadow);
+        }
+
+        input[type="text"]:focus,
+        input[type="number"]:focus,
+        select:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 4px rgba(0, 75, 77, 0.1);
+        }
+
+        button {
+            background-image: linear-gradient(to top, #cfd9df 0%, #e2ebf0 100%);
+            color: var(--white);
+            border: none;
+            padding: 1.25rem 2.5rem;
+            border-radius: 16px;
+            font-size: 1.1rem;
+            font-weight: 750;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            width: 100%;
+            position: relative;
+            overflow: hidden;
+        }
+
+        button:hover {
+            background: var(--primary-light);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 16px rgba(0, 75, 77, 0.2);
+        }
+
+        button:active {
+            transform: translateY(0);
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2.5rem;
+        }
+
+        .buttons-row {
+            display: grid;
+            grid-template-columns: auto 1fr;
+            gap: 1.5rem;
+            margin-top: 3.5rem;
+        }
+
+        button[type="button"] {
+            background-image: linear-gradient(to top, #cfd9df 0%, #e2ebf0 100%);
+            color: var(--primary);
+        }
+
+        button[type="submit"] {
+            background: var(--primary);
+            color: white;
+        }
+
+        button[type="button"]:hover {
+            background: var(--border);
+            box-shadow: 0 4px 12px rgba(0, 75, 77, 0.1);
+        }
+
+        .input-container {
+            position: relative;
+        }
+
+        .input-container input:focus + .floating-label,
+        .input-container input:not(:placeholder-shown) + .floating-label {
+            transform: translateY(-140%) scale(0.85);
+            color: var(--primary);
+        }
+
+        .floating-label {
+            position: absolute;
+            pointer-events: none;
+            left: 1.25rem;
+            top: 1.25rem;
+            transition: 0.2s cubic-bezier(0.4, 0, 0.2, 1) all;
+            color: var(--text-light);
+            background: var(--white);
+            padding: 0 0.5rem;
+        }
+
+        .measurement-unit {
+            position: absolute;
+            right: 2.52rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-light);
+            font-size: 0.9rem;
+            pointer-events: none;
+        }
+
+        @media (max-width: 768px) {
+            .stage-container {
+                padding: 2rem;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .buttons-row {
+                grid-template-columns: 1fr;
+            }
+
+            body {
+                padding: 1rem;
+            }
+
+            .form-header h1 {
+                font-size: 2.5rem;
+            }
+
+            .stage-nav label {
+                padding: 1rem;
+                font-size: 1rem;
+            }
+        }
+
+        .form-group:focus-within label {
+            color: var(--primary);
+        }
+
+        .input-container:hover input {
+            border-color: var(--primary-lighter);
+        }
+
+        .progress-indicator {
+            height: 4px;
+            background: var(--border);
+            border-radius: 2px;
+            margin-bottom: 2rem;
+            overflow: hidden;
+        }
+
+        .progress-bar {
+            height: 100%;
+            background: var(--primary);
+            transition: width 0.3s ease;
+        }
+
+        #stage1:checked ~ .progress-indicator .progress-bar {
+            width: 50%;
+        }
+
+        #stage2:checked ~ .progress-indicator .progress-bar {
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <div class="glass-navbar">
+          <div class="navbar-logo">
+            <a href="/">
+              <div class="logo-container">
+                <img src="{% static 'img/logo/well_scan_logo.jpg' %}" alt="Well Scan Logo" class="logo-img">
+              </div>
+            </a>
+          </div>        
+          <div class="menu">
+            <ul>
+              {% if user.is_authenticated %}
+              <li class="username">👋 Hello, {{ user.username }}!</li>
+              <li><a href="/">Home</a></li>
+              <li><a href="/diet">Diet Chart</a></li>
+              <li><a href="/#services">Services</a></li>
+              <li><a href="/contact">Contact Us</a></li>
+              <li><a href="/consultation">Consultation</a></li>
+      
+              <div class="admin-container">
+                <div class="admin-logo" onclick="toggleDropdown()">
+                    <i class="fas fa-user-shield"></i>
+                    <div class="dropdown-menu">
+                      <form method="POST" action="{% url 'logout' %}">
+                          {% csrf_token %}
+                          <button type="submit" style="background: none; border: none; cursor: pointer; color: blue;">Logout</button>
+                      </form>
+                  </div>
+              </div>
+          
+              {% else %}
+              <li><a href="/">Home</a></li>
+              <li><a href="/diet">Diet Chart</a></li>
+              <li><a href="/#services">Services</a></li>
+              <li><a href="/contact">Contact Us</a></li>
+              <li><a href="/consultation">Consultation</a></li>
+      
+              <div class="admin-container">
+                <div class="admin-logo" onclick="toggleDropdown()">
+                    <i class="fas fa-user-shield"></i>
+                </div>
+                <div class="dropdown-menu">
+                    <a href="/login">Login</a>
+                </div>
+            </div>
+                {% endif %}
+            </ul>
+          </div>
+        </div>
+      </div>
+    <div class="container">
+        <div class="form-header">
+            <h1>Diabetes Risk Assessment</h1>
+            <p>Complete your health profile for a comprehensive evaluation</p>
+        </div>
+
+        <form method = "post" action="{% url 'diebetesresult' %}">
+            <input type="radio" name="stage" id="stage1" checked>
+            <input type="radio" name="stage" id="stage2">
+
+            <div class="progress-indicator">
+                <div class="progress-bar"></div>
+            </div>
+
+            <div class="stage-nav">
+                <label for="stage1">Personal Information</label>
+                <label for="stage2">Clinical Metrics</label>
+            </div>
+
+            <div class="stage-container">
+                <div id="stage1-content" class="form-stage">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="Gender">Biological Sex</label>
+                            <select id="Gender" name="Gender" required>
+                                <option value="1">Male</option>
+                                <option value="0">Female</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="Age">Age</label>
+                            <div class="input-container">
+                                <input type="text" id="Age" name="Age" placeholder=" " min="0" max="120" required>
+                                <span class="floating-label">Years</span>
+                            </div>
+                        </div>
+                    </div>
+                    <button type="button" onclick="document.getElementById('stage2').checked = true">Continue to Clinical Metrics</button>
+                </div>
+
+                <div id="stage2-content" class="form-stage">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="Urea_Level">Blood Urea Nitrogen</label>
+                            <div class="input-container">
+                                <input type="text" id="Urea_Level" name="Urea_Level" placeholder=" " step="0.01" required>
+                                <span class="floating-label">Enter value</span>
+                                <span class="measurement-unit">mg/dL</span>
+                            </div>
+                            <div class="reference-range">Normal: 7-20 mg/dL</div>
+                        </div>
+                        <div class="form-group">
+                            <label for="Cr">Creatinine</label>
+                            <div class="input-container">
+                                <input type="text" id="Cr" name="Cr" placeholder=" " step="0.01" required>
+                                <span class="floating-label">Enter value</span>
+                                <span class="measurement-unit">mg/dL</span>
+                            </div>
+                            <div class="reference-range">Normal: 0.7-1.3 mg/dL</div>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="HbA1c">Hemoglobin</label>
+                            <div class="input-container">
+                                <input type="text" id="HbA1c" name="HbA1c" placeholder=" " step="0.1" required>
+                                <span class="floating-label">Enter value</span>
+                                <span class="measurement-unit">g/dL</span>
+                            </div>
+                            <div class="reference-range">Normal: 12-16 g/dL</div>
+                        </div>
+                        <div class="form-group">
+                            <label for="TG">Triglycerides</label>
+                            <div class="input-container">
+                                <input type="text" id="TG" name="TG" placeholder=" " step="0.1" required>
+                                <span class="floating-label">Enter value</span>
+                                <span class="measurement-unit">mg/dL</span>
+                            </div>
+                            <div class="reference-range">Optimal: 90-100 mg/dL</div>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="Chol">Cholesterol</label>
+                            <div class="input-container">
+                                <input type="text" id="Chol" name="Chol" placeholder=" " step="0.1" required>
+                                <span class="floating-label">Enter value</span>
+                                <span class="measurement-unit">mg/dL</span>
+                            </div>
+                            <div class="reference-range">Optimal: <200 mg/dL</div>
+                        </div>
+                        <div class="form-group">
+                            <label for="HDL">High Density Lipoprotein</label>
+                            <div class="input-container">
+                                <input type="text" id="HDL" name="HDL" placeholder=" " step="0.1" required>
+                                <span class="floating-label">Enter value</span>
+                                <span class="measurement-unit">mg/dL</span>
+                            </div>
+                            <div class="reference-range">Optimal: >40 mg/dL</div>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="LDL">Low Density Lipoprotein</label>
+                            <div class="input-container">
+                                <input type="text" id="LDL" name="LDL" placeholder=" " step="0.1" required>
+                                <span class="floating-label">Enter value</span>
+                                <span class="measurement-unit">mg/dL</span>
+                            </div>
+                            <div class="reference-range">Optimal: <100 mg/dL</div>
+                        </div>
+                        <div class="form-group">
+                            <label for="VLDL">Very Low Density Lipoprotein</label>
+                            <div class="input-container">
+                                <input type="text" id="VLDL" name="VLDL" placeholder=" " step="0.1" required>
+                                <span class="floating-label">Enter value</span>
+                                <span class="measurement-unit">mg/dL</span>
+                            </div>
+                            <div class="reference-range">Normal: <30 mg/dL</div>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="BMI">Body Mass Index (BMI)</label>
+                            <div class="input-container">
+                                <input type="text" id="BMI" name="BMI" placeholder=" " step="0.1" required>
+                                <span class="floating-label">Enter value</span>
+                                <span class="measurement-unit">kg/m²</span>
+                            </div>
+                            <div class="reference-range">Normal range: 18.5-24.9 kg/m²</div>
+                        </div>
+                    </div>
+                    <div class="buttons-row">
+                        <button type="button" onclick="document.getElementById('stage1').checked = true">Back to Personal Information</button>
+                        <button type="submit">Generate Risk Assessment</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

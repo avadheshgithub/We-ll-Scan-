@@ -1,0 +1,637 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wellness Dashboard</title>
+  <link rel="shortcut icon" type="image/x-icon" href="static/img/logo/well_scan_logo.jpg" style="border-radius : 50%">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link rel="stylesheet" href="/static/diet_chart.css">
+  <link rel="stylesheet" href="/static/header_navbar.css">
+  <style>
+      /* Base Styles */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        transition: background-color 0.3s ease, 
+                    border-color 0.3s ease,
+                    transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+                    box-shadow 0.3s ease;
+      }
+    
+      body {
+        font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+        color: #ffffff;
+        text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+        /* background: linear-gradient(45deg, #0D2F2D, #1a4a47); */
+        background: url('/static/img/bg/nutrition-chiropractic.jpg') center/cover no-repeat fixed;
+        min-height: 100vh;
+        line-height: 1.6;
+      }
+    
+      /* Glassmorphism Overlay */
+      /* .background-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(255, 255, 255, 0.05);
+        backdrop-filter: blur(5px);
+        z-index: -1;
+      } */
+    
+      /* Header Styles */
+      .header {
+        background: #0D2F2D;
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        padding: 1.5rem 2rem;
+        border-radius: 12px;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        margin-top:12rem;
+        margin-left:161px;
+        width:79%;
+      }
+    
+      .header h1 {
+        font-size: 2.2rem;
+        font-weight: 700;
+        color: #fff;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        letter-spacing: -0.5px;
+      }
+    
+      .header p {
+        font-size: 1.1rem;
+        color: #e0e0e0;
+        opacity: 0.9;
+        margin-top: 0.5rem;
+      }
+    
+      /* Main Container */
+      .container {
+        background: #0D2F2D;
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 16px;
+        padding: 2rem;
+        margin: 1rem;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+        margin-left:14%;
+      }
+    
+      /* Condition Select */
+      .select-box {
+        background: rgba(255, 255, 255, 0.08);
+        color: black;
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        padding: 12px 24px;
+        border-radius: 8px;
+        font-size: 1.1rem;
+        width: 100%;
+        margin: 1rem 0;
+      }
+    
+      .select-box:hover {
+        background: rgba(255, 255, 255, 0.12);
+      }
+    
+      /* Tabs */
+      .tabs {
+        display: flex;
+        gap: 1rem;
+        margin: 1.5rem 0;
+      }
+    
+      .tabs .tab {
+        background: rgba(255, 255, 255, 0.08);
+        backdrop-filter: blur(4px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        color: white;
+        padding: 12px 24px;
+        border-radius: 8px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-weight: 500;
+      }
+    
+      .tabs .tab:hover {
+        background: rgba(255, 255, 255, 0.15);
+        transform: translateY(-2px);
+      }
+    
+      .tabs .tab.active {
+        background: linear-gradient(145deg, 
+          rgba(69, 160, 73, 0.8), 
+          rgba(56, 142, 60, 0.9));
+        border-color: rgba(255, 255, 255, 0.2);
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+      }
+    
+      /* Content Cards */
+      .card {
+        background: rgba(255, 255, 255, 0.08);
+        backdrop-filter: blur(8px);
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        border-radius: 12px;
+        padding: 1.5rem;
+        margin: 1rem 0;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        color: white;
+        font-size: 20px;
+        font-weight: bold;
+      }
+    
+      .card:hover {
+        background: rgba(255, 255, 255, 0.12);
+        transform: translateY(-5px) scale(1.02);
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+      }
+    
+      .card img {
+        width: 100%;
+        border-radius: 8px;
+        margin-bottom: 1rem;
+        aspect-ratio: 16/9;
+        object-fit: cover;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+      }
+    
+      .card h3 {
+        color: #8bc34a;
+        font-weight: 600;
+        margin-bottom: 0.8rem;
+        font-size: 1.25rem;
+      }
+    
+      .card p {
+        color: #e0e0e0;
+        line-height: 1.6;
+      }
+    
+      /* Schedule Days */
+      .day {
+        background: rgba(255, 255, 255, 0.05);
+        backdrop-filter: blur(6px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 12px;
+        padding: 1.5rem;
+        margin: 1rem 0;
+      }
+    
+      .day:hover {
+        transform: translateY(-3px);
+      }
+    
+      .day h3 {
+        color: #8bc34a;
+        font-size: 1.3rem;
+        margin-bottom: 1.2rem;
+        padding-bottom: 0.5rem;
+        border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+      }
+    
+      .day .details {
+        display: flex;
+        gap: 2rem;
+      }
+    
+      .day .details h4 {
+        color: #8bc34a;
+        margin-bottom: 1rem;
+        font-size: 1.1rem;
+      }
+    
+      .day .details ul {
+        list-style: none;
+      }
+    
+      .day .details li {
+        padding: 8px 0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        color: #f0f0f0;
+      }
+    
+      /* Responsive Design */
+      @media (max-width: 768px) {
+        .header {
+          margin: 0.5rem;
+          padding: 1rem;
+        }
+    
+        .header h1 {
+          font-size: 1.8rem;
+        }
+    
+        .container {
+          margin: 0.5rem;
+          padding: 1rem;
+        }
+    
+        .tabs {
+          flex-direction: column;
+        }
+    
+        .day .details {
+          flex-direction: column;
+          gap: 1rem;
+        }
+    
+        .card {
+          padding: 1rem;
+        }
+      }
+    
+      /* Utility Transitions */
+      .scale-up {
+        transition: transform 0.3s ease;
+      }
+    
+      .scale-up:hover {
+        transform: scale(1.02);
+      }
+  </style>
+</head>
+<body>
+  <div class="glass-navbar">
+    <div class="navbar-logo">
+      <a href="/">
+        <div class="logo-container">
+          <img src="static/img/logo/well_scan_logo.jpg" alt="Well Scan Logo" class="logo-img">
+        </div>
+      </a>
+    </div>        
+    <div class="menu">
+      <ul>
+        {% if user.is_authenticated %}
+        <li class="username">👋 Hello, {{ user.username }}!</li>
+        <li><a href="/">Home</a></li>
+        <li><a href="/diet">Diet Chart</a></li>
+        <li><a href="/#services">Services</a></li>
+        <li><a href="/contact">Contact Us</a></li>
+        <li><a href="/consultation">Consultation</a></li>
+
+        <div class="admin-container">
+          <div class="admin-logo" onclick="toggleDropdown()">
+              <i class="fas fa-user-shield"></i>
+              <div class="dropdown-menu">
+                <form method="POST" action="{% url 'logout' %}">
+                    {% csrf_token %}
+                    <button type="submit" style="background: none; border: none; cursor: pointer; color: blue;">Logout</button>
+                </form>
+            </div>
+        </div>
+    
+        {% else %}
+        <li><a href="/">Home</a></li>
+        <li><a href="/diet">Diet Chart</a></li>
+        <li><a href="/#services">Services</a></li>
+        <li><a href="/contact">Contact Us</a></li>
+        <li><a href="/consultation">Consultation</a></li>
+
+        <div class="admin-container">
+          <div class="admin-logo" onclick="toggleDropdown()">
+              <i class="fas fa-user-shield"></i>
+          </div>
+          <div class="dropdown-menu">
+              <a href="/login">Login</a>
+          </div>
+      </div>
+          {% endif %}
+      </ul>
+    </div>
+  </div>
+</div>
+<!-- ========================= Navbar_End ========================= -->
+
+  <div class="background-overlay"></div>
+  <!-- Header -->
+  <header class="header">
+    <div>
+      <h1>Wellness Dashboard</h1>
+      <p>Your personalized health and diet plan</p>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="container">
+    <!-- Condition Selection -->
+    <div class="condition-select">
+        <select class="select-box">
+            <option value="">Select your health condition</option>
+            <option value="diabetes">Diabetes</option>
+            <option value="hypertension">Hypertension</option>
+            <option value="obesity">Obesity</option>
+            <option value="arthritis">Arthritis</option>
+          </select>
+    </div>
+
+    <!-- Tabs -->
+    <div class="tabs">
+      <button class="tab active">
+        <i class="fas fa-utensils"></i>
+        Diet Plan
+      </button>
+      <button class="tab">
+        <i class="fas fa-dumbbell"></i>
+        Exercise
+      </button>
+      <button class="tab">
+        <i class="fas fa-spa"></i>
+        Yoga
+      </button>
+      <!-- <button class="tab">
+        <i class="fas fa-calendar-alt"></i>
+        Schedule
+      </button> -->
+    </div>
+
+    <!-- Content Sections -->
+    <div class="content">
+      <!-- Diet Plan -->
+      <div class="section active diet-content">
+        <!-- Content will be dynamically updated -->
+      </div>
+
+      <!-- Exercise -->
+      <div class="section exercise-content">
+        <!-- Content will be dynamically updated -->
+      </div>
+
+      <!-- Yoga -->
+      <div class="section yoga-content">
+        <!-- Content will be dynamically updated -->
+      </div>
+
+      <!-- Schedule -->
+      <div class="section schedule-content">
+        <!-- Content will be dynamically updated -->
+      </div>
+    </div>
+  </main>
+  <script src="/static/js/script.js"></script>
+  <script>
+    function toggleTheme() {
+      document.body.classList.toggle('dark-mode');
+    }
+  </script>
+</body>
+<script>
+  // Wait for the DOM to fully load before running the script
+document.addEventListener('DOMContentLoaded', () => {
+  // Tab Switching Logic
+  const tabs = document.querySelectorAll('.tab');
+  const sections = document.querySelectorAll('.section');
+
+  tabs.forEach((tab, index) => {
+    tab.addEventListener('click', () => {
+      // Remove active class from all tabs and sections
+      tabs.forEach(t => t.classList.remove('active'));
+      sections.forEach(s => s.classList.remove('active'));
+
+      // Add active class to the clicked tab and corresponding section
+      tab.classList.add('active');
+      sections[index].classList.add('active');
+    });
+  });
+
+  // Event listener for condition selection
+  const selectBox = document.querySelector('.select-box');
+  selectBox.addEventListener('change', (e) => {
+    const selectedCondition = e.target.value;
+    updateContent(selectedCondition);
+  });
+
+  // Initialize with the first condition
+  updateContent('diabetes');
+});
+
+const healthData = {
+  diabetes: {
+    condition: 'Diabetes',
+    diet: [
+      'Leafy greens',
+      'Whole grains',
+      'Lean proteins',
+      'Low-glycemic fruits',
+      'Greek yogurt'
+    ],
+    exercises: [
+      '30 minutes of brisk walking',
+      'Swimming',
+      'Cycling',
+      'Resistance training'
+    ],
+    yogaPoses: [
+      {
+        name: 'Surya Namaskar',
+        benefits: 'Helps regulate blood sugar levels',
+        imageUrl: 'https://images.unsplash.com/photo-1544367567-0f2fcb009e0b'
+      },
+      {
+        name: 'Dhanurasana',
+        benefits: 'Stimulates pancreas',
+        imageUrl: 'https://images.unsplash.com/photo-1573590330099-d6c7355ec595'
+      }
+    ],
+    weeklySchedule: Array(7).fill(null).map((_, index) => ({
+      day: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'][index],
+      meals: {
+        breakfast: 'Oatmeal with berries',
+        lunch: 'Quinoa salad with grilled chicken',
+        dinner: 'Grilled fish with vegetables',
+        snacks: 'Almonds and apple slices'
+      },
+      activities: [
+        '30min morning walk',
+        '15min yoga session',
+        '20min evening exercise'
+      ]
+    }))
+  },
+  hypertension: {
+    condition: 'Hypertension',
+    diet: [
+      'Low-sodium foods',
+      'DASH diet items',
+      'Potassium-rich foods',
+      'Lean proteins',
+      'Whole grains'
+    ],
+    exercises: [
+      'Regular walking',
+      'Light jogging',
+      'Swimming',
+      'Tai chi'
+    ],
+    yogaPoses: [
+      {
+        name: 'Shavasana',
+        benefits: 'Reduces blood pressure and stress',
+        imageUrl: 'https://images.unsplash.com/photo-1545389336-cf090694435e'
+      },
+      {
+        name: 'Pranayama',
+        benefits: 'Helps in blood pressure regulation',
+        imageUrl: 'https://images.unsplash.com/photo-1549576490-b0b4831ef60a'
+      }
+    ],
+    weeklySchedule: Array(7).fill(null).map((_, index) => ({
+      day: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'][index],
+      meals: {
+        breakfast: 'Whole grain toast with avocado',
+        lunch: 'Mediterranean salad',
+        dinner: 'Baked fish with vegetables',
+        snacks: 'Fresh fruits'
+      },
+      activities: [
+        '20min morning walk',
+        '15min meditation',
+        '20min evening exercise'
+      ]
+    }))
+  },
+  obesity: {
+    condition: 'Obesity',
+    diet: [
+      'High-fiber foods',
+      'Lean proteins',
+      'Healthy fats',
+      'Low-calorie snacks',
+      'Plenty of water'
+    ],
+    exercises: [
+      'Aerobic exercises',
+      'Strength training',
+      'High-intensity interval training (HIIT)',
+      'Yoga for weight loss'
+    ],
+    yogaPoses: [
+      {
+        name: 'Bhujangasana (Cobra Pose)',
+        benefits: 'Strengthens the spine and aids in weight loss',
+        imageUrl: 'https://images.unsplash.com/photo-1599901860904-17e6ed7083a0'
+      },
+      {
+        name: 'Trikonasana (Triangle Pose)',
+        benefits: 'Improves digestion and reduces belly fat',
+        imageUrl: 'https://images.unsplash.com/photo-1599901860904-17e6ed7083a0'
+      }
+    ],
+    weeklySchedule: Array(7).fill(null).map((_, index) => ({
+      day: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'][index],
+      meals: {
+        breakfast: 'Smoothie with spinach and berries',
+        lunch: 'Grilled chicken salad',
+        dinner: 'Steamed vegetables with quinoa',
+        snacks: 'Carrot sticks with hummus'
+      },
+      activities: [
+        '30min cardio workout',
+        '15min yoga session',
+        '20min strength training'
+      ]
+    }))
+  },
+  arthritis: {
+    condition: 'Arthritis',
+    diet: [
+      'Anti-inflammatory foods',
+      'Fatty fish (salmon, mackerel)',
+      'Nuts and seeds',
+      'Fruits and vegetables',
+      'Whole grains'
+    ],
+    exercises: [
+      'Low-impact exercises',
+      'Swimming',
+      'Tai chi',
+      'Stretching'
+    ],
+    yogaPoses: [
+      {
+        name: 'Virabhadrasana (Warrior Pose)',
+        benefits: 'Strengthens joints and improves flexibility',
+        imageUrl: 'https://images.unsplash.com/photo-1599901860904-17e6ed7083a0'
+      },
+      {
+        name: 'Balasana (Child’s Pose)',
+        benefits: 'Relieves joint pain and stiffness',
+        imageUrl: 'https://images.unsplash.com/photo-1599901860904-17e6ed7083a0'
+      }
+    ],
+    weeklySchedule: Array(7).fill(null).map((_, index) => ({
+      day: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'][index],
+      meals: {
+        breakfast: 'Oatmeal with flaxseeds',
+        lunch: 'Grilled salmon with steamed vegetables',
+        dinner: 'Quinoa and vegetable stir-fry',
+        snacks: 'Walnuts and blueberries'
+      },
+      activities: [
+        '20min stretching',
+        '15min yoga session',
+        '20min low-impact exercise'
+      ]
+    }))
+  }
+};
+
+// Function to update the content based on the selected condition
+function updateContent(condition) {
+  const data = healthData[condition];
+  if (!data) return;
+
+  // Update Diet Plan
+  const dietSection = document.querySelector('.diet-content');
+  dietSection.innerHTML = data.diet.map(item => `<div class="card">${item}</div>`).join('');
+
+  // Update Exercise Routine
+  const exerciseSection = document.querySelector('.exercise-content');
+  exerciseSection.innerHTML = data.exercises.map(exercise => `<div class="card">${exercise}</div>`).join('');
+
+  // Update Yoga Poses
+  const yogaSection = document.querySelector('.yoga-content');
+  yogaSection.innerHTML = data.yogaPoses.map(pose => `
+    <div class="card">
+      <img src="${pose.imageUrl}" alt="${pose.name}">
+      <h3>${pose.name}</h3>
+      <p>${pose.benefits}</p>
+    </div>
+  `).join('');
+
+  // Update Weekly Schedule
+  const scheduleSection = document.querySelector('.schedule-content');
+  scheduleSection.innerHTML = data.weeklySchedule.map(day => `
+    <div class="day">
+      <h3>${day.day}</h3>
+      <div class="details">
+        <div>
+          <h4>Meals</h4>
+          <ul>
+            <li>Breakfast: ${day.meals.breakfast}</li>
+            <li>Lunch: ${day.meals.lunch}</li>
+            <li>Dinner: ${day.meals.dinner}</li>
+            <li>Snacks: ${day.meals.snacks}</li>
+          </ul>
+        </div>
+        <div>
+          <h4>Activities</h4>
+          <ul>
+            ${day.activities.map(activity => `<li>${activity}</li>`).join('')}
+          </ul>
+        </div>
+      </div>
+    </div>
+  `).join('');
+}
+</script>
+</html>

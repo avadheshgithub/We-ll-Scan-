@@ -1,0 +1,277 @@
+/* service section  */
+.service-heading h2{
+    color: white;
+}
+.service-section {
+    position: relative;
+    margin-top: 100px;
+    margin-bottom: 40px;
+}
+
+.service-section .shape {
+    top: 160px;
+    left: -50px;
+}
+
+.service-section .service-item {
+    border-radius: 20px;
+    -webkit-box-shadow: 0 10px 35px rgba(0, 173, 181, 0.14);
+    box-shadow: 0 10px 35px rgba(0, 173, 181, 0.14);
+    -webkit-transition: all 0.3s ease-out 0s;
+    transition: all 0.3s ease-out 0s;
+    position: relative;
+    padding: 40px;
+    z-index: 1;
+    margin-bottom: 20px;
+}
+
+.service-section .service-item .service-icon svg path {
+    -webkit-transition: all 0.3s ease-out 0s;
+    transition: all 0.3s ease-out 0s;
+}
+
+.service-section .service-item .service-content h4 {
+    margin-bottom: 20px;
+}
+
+.service-section .service-item .service-content p {
+    font-size: 16px;
+    line-height: 25px;
+    margin-bottom: 25px;
+}
+
+.service-section .service-item .service-overlay {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    border-radius: 20px;
+    /* background: url("static/img/service/service-1.png"); */
+    opacity: 0;
+    visibility: hidden;
+    -webkit-transform: scale(0.9);
+    transform: scale(0.9);
+    -webkit-transition: all 0.3s ease-out 0s;
+    transition: all 0.3s ease-out 0s;
+}
+
+.service-section .service-item .service-overlay::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    border-radius: 20px;
+    background: #0D2F2D;
+}
+
+.service-section .service-item:hover .service-icon svg path {
+    fill: #fff;
+}
+
+.service-section .service-item:hover .service-content h4,
+.service-section .service-item:hover .service-content p,
+.service-section .service-item:hover .service-content a {
+    color: #fff;
+}
+
+.service-section .service-item:hover .service-overlay {
+    opacity: 1;
+    visibility: visible;
+    -webkit-transform: scale(1);
+    transform: scale(1);
+}
+
+
+.faq-section {
+    position: relative;
+    overflow: hidden;
+}
+
+.faq-section .faq-video-wrapper {
+    position: absolute;
+    left: 0;
+    top: 0;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    height: 100%;
+    overflow: hidden;
+    width: 50%;
+}
+
+@media only screen and (min-width: 1400px) {
+    .faq-section .faq-video-wrapper {
+        width: 48%;
+    }
+}
+
+@media only screen and (min-width: 1200px) and (max-width: 1399px) {
+    .faq-section .faq-video-wrapper {
+        width: 47%;
+    }
+}
+
+@media only screen and (min-width: 992px) and (max-width: 1199px) {
+    .faq-section .faq-video-wrapper {
+        position: unset;
+        display: block;
+        width: 100%;
+    }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+    .faq-section .faq-video-wrapper {
+        position: unset;
+        display: block;
+        width: 100%;
+    }
+}
+
+@media (max-width: 767px) {
+    .faq-section .faq-video-wrapper {
+        position: unset;
+        display: block;
+        width: 100%;
+    }
+}
+
+.faq-section .faq-video-wrapper .faq-video {
+    position: relative;
+}
+
+@media only screen and (min-width: 992px) and (max-width: 1199px) {
+    .faq-section .faq-video-wrapper .faq-video img {
+        width: 100%;
+    }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+    .faq-section .faq-video-wrapper .faq-video img {
+        width: 100%;
+    }
+}
+
+@media (max-width: 767px) {
+    .faq-section .faq-video-wrapper .faq-video img {
+        width: 100%;
+    }
+}
+
+.faq-section .faq-video-wrapper .faq-video .video-btn {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 50%;
+    left: 0;
+    right: 0;
+    margin: auto;
+    text-align: center;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-transform: translateY(-50%);
+    transform: translateY(-50%);
+}
+
+.faq-section .faq-video-wrapper .faq-video .video-btn a {
+    display: inline-block;
+    width: 77px;
+    height: 77px;
+    line-height: 77px;
+    background: #0D2F2D;
+    color: #fff;
+    position: relative;
+    text-align: center;
+    border-radius: 50%;
+    z-index: 1;
+}
+
+.faq-section .faq-video-wrapper .faq-video .video-btn a::before {
+    content: '';
+    position: absolute;
+    width: 129px;
+    height: 129px;
+    border-radius: 50%;
+    background: rgba(0, 173, 181, 0.16);
+    z-index: -1;
+    top: -26px;
+    left: -26px;
+    -webkit-animation: animation1 2s linear infinite;
+    animation: animation1 2s linear infinite;
+}
+
+.faq-section .faq-video-wrapper .faq-video .video-btn a::after {
+    content: '';
+    position: absolute;
+    width: 199px;
+    height: 199px;
+    border-radius: 50%;
+    background: rgba(0, 173, 181, 0.13);
+    z-index: -1;
+    top: -61px;
+    left: -61px;
+    -webkit-animation: animation1 2s linear infinite 2s;
+    animation: animation1 2s linear infinite 2s;
+}
+
+.faq-section .shape {
+    position: absolute;
+    right: -150px;
+    top: 0;
+}
+
+.faq-section .faq-content-wrapper .faq-wrapper .faq-item {
+    background: #0D2F2D;
+    border-radius: 10px;
+}
+
+.faq-section .faq-content-wrapper .faq-wrapper .faq-item .faq-btn {
+    display: block;
+    width: 100%;
+    text-align: left;
+    font-style: italic;
+    color: #fff;
+    background: none;
+    font-size: 20px;
+    padding: 20px 50px 20px 30px;
+    position: relative;
+    white-space: normal;
+}
+
+.faq-section .faq-content-wrapper .faq-wrapper .faq-item .faq-btn i {
+    position: absolute;
+    right: 30px;
+    top: 30px;
+    font-size: 12px;
+}
+
+.faq-section .faq-content-wrapper .faq-wrapper .faq-item .faq-btn i::before {
+    content: "\eb2c";
+    font: normal normal normal 1em/1 "LineIcons";
+}
+
+.faq-section .faq-content-wrapper .faq-wrapper .faq-item .faq-btn.collapsed i::before {
+    content: "\eb53";
+}
+
+.faq-section .faq-content-wrapper .faq-wrapper .faq-item .faq-content {
+    color: #fff;
+    padding: 5px 30px 30px;
+    font-size: 16px;
+    line-height: 25px;
+}
+
+

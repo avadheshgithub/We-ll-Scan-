@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Result Page</title>
+    <link rel="stylesheet" href="/static/result.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+      integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+  </head>
+  <body>
+    <header>
+      <div class="button-container">
+        <button id="negative-button" class="btn">Test Negative</button>
+        <button id="positive-button" class="btn">! Test Positive</button>
+      </div>
+    </header>
+
+    <main>
+      <!-- Test Negative Section -->
+      <div class="negative-section hidden" id="negative-section">
+        <div class="message-box success-box">
+          <h1>
+            <i class="fa-regular fa-heart" style="color: #41f11e"></i>
+            Congratulations! Your Test is Negative
+          </h1>
+          <p>
+            Your health indicators are within normal ranges. Keep up the good
+            work!
+          </p>
+        </div>
+
+        <h2>Recommended Health Activities</h2>
+        <div class="activities-box">
+          <div class="activity-grid">
+            <div class="activity-card">
+              <i class="fas fa-dumbbell icon green-icon"></i>
+              <h3>Regular Exercise</h3>
+              <p>
+                Maintain a routine of 30 minutes of moderate exercise, 5 days a
+                week.
+              </p>
+            </div>
+            <div class="activity-card">
+              <i class="fas fa-utensils icon green-icon"></i>
+              <h3>Balanced Diet</h3>
+              <p>
+                Include plenty of fruits, vegetables, and whole grains in your
+                daily meals.
+              </p>
+            </div>
+            <div class="activity-card">
+              <i class="fas fa-spa icon green-icon"></i>
+              <h3>Stress Management</h3>
+              <p>
+                Practice relaxation techniques like meditation or deep breathing
+                exercises.
+              </p>
+            </div>
+            <div class="activity-card">
+              <i class="fas fa-bed icon green-icon"></i>
+              <h3>Healthy Sleep Habits</h3>
+              <p>Aim for 7-9 hours of quality sleep each night.</p>
+            </div>
+            <div class="activity-card">
+              <i class="fas fa-tint icon green-icon"></i>
+              <h3>Stay Hydrated</h3>
+              <p>
+                Drink at least 8 glasses of water per day to maintain proper
+                hydration.
+              </p>
+            </div>
+            <div class="activity-card">
+              <i class="fas fa-brain icon green-icon"></i>
+              <h3>Mental Wellness</h3>
+              <p>
+                Take time for self-care, relaxation, and mental well-being
+                activities.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Test Positive Section -->
+      <div class="positive-section hidden" id="positive-section">
+        <div class="message-box alert-box">
+          <h1>
+            <i
+              class="fa-solid fa-triangle-exclamation"
+              style="color: #e91b0c"
+            ></i>
+            Important Health Alert
+          </h1>
+          <p>Your health indicators require attention.</p>
+          <p>
+            <strong
+              >Please consult a healthcare professional as soon as
+              possible.</strong
+            >
+          </p>
+        </div>
+
+        <!-- Bar Chart for Numerical Data -->
+        <div class="card02">
+          <div class="card02-header">
+            <i class="fas fa-clipboard"></i> Numerical Measurements
+          </div>
+
+          <div class="measurement" id="age-section">
+            <span>Age:</span>
+            <div class="progress-bar02"><div class="progress02"></div></div>
+            <span class="value02" id="age-value"></span>
+          </div>
+
+          <div class="measurement" id="trestbps-section">
+            <span>Resting Blood Pressure:</span>
+            <div class="progress-bar02"><div class="progress02"></div></div>
+            <span class="value02" id="trestbps-value"></span>
+          </div>
+
+          <div class="measurement" id="chol-section">
+            <span>Serum Cholesterol:</span>
+            <div class="progress-bar02"><div class="progress02"></div></div>
+            <span class="value02" id="chol-value"></span>
+          </div>
+
+          <div class="measurement" id="thalach-section">
+            <span>Max Heart Rate:</span>
+            <div class="progress-bar02"><div class="progress02"></div></div>
+            <span class="value02" id="thalach-value"></span>
+          </div>
+
+          <div class="measurement" id="oldpeak-section">
+            <span>ST Depression:</span>
+            <div class="progress-bar02"><div class="progress02"></div></div>
+            <span class="value02" id="oldpeak-value"></span>
+          </div>
+        </div>
+
+        <!-- Clinical Observations -->
+        <div class="card">
+          <div class="card-header">
+            <i class="fas fa-stethoscope"></i> Clinical Observations
+          </div>
+          <div class="grid-container">
+            <div class="grid-item" id="sex-section">Sex: <b></b></div>
+            <div class="grid-item" id="cp-section">
+              Chest Pain Type: <b></b>
+            </div>
+            <div class="grid-item" id="fbs-section">
+              Fasting Blood Sugar: <b></b>
+            </div>
+            <div class="grid-item" id="restecg-section">
+              Resting ECG Results: <b></b>
+            </div>
+            <div class="grid-item" id="exang-section">
+              Exercise-induced Angina: <b></b>
+            </div>
+            <div class="grid-item" id="slope-section">
+              Slope of the Peak Exercise ST Segment: <b></b>
+            </div>
+            <div class="grid-item" id="ca-section">
+              Number of Major Vessels: <b></b>
+            </div>
+            <div class="grid-item" id="thal-section">Thalassemia: <b></b></div>
+          </div>
+        </div>
+
+        <h2>Recommended Medical Tests</h2>
+        <div class="activities-box">
+          <div class="activity-grid">
+            <div class="activity-card">
+              <i class="fas fa-pills icon red-icon"></i>
+              <h3>Comprehensive Blood Panel</h3>
+              <p>Visit a doctor for a proper health assessment.</p>
+            </div>
+            <div class="activity-card">
+              <i class="fas fa-heartbeat icon red-icon"></i>
+              <h3>Cardiac Stress Test</h3>
+              <p>
+                Keep track of your blood pressure, sugar levels, and heart rate.
+              </p>
+            </div>
+            <div class="activity-card">
+              <i class="fas fa-apple-alt icon red-icon"></i>
+              <h3>Echocardiogram</h3>
+              <p>
+                Reduce sugar and cholesterol intake, eat more fruits and
+                vegetables.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <script src="/static/js/result.js"></script>
+
+    <script>
+      window.onload = function () {
+        // Retrieve heart disease form data from localStorage
+        const heartData = JSON.parse(localStorage.getItem("heartData"));
+
+        if (heartData) {
+          // Update Progress Bars (Numerical Data)
+          updateProgressBar("age-section", heartData.age, 120, "age-value", 50);
+          updateProgressBar(
+            "trestbps-section",
+            heartData.trestbps,
+            200,
+            "trestbps-value",
+            140
+          );
+          updateProgressBar(
+            "chol-section",
+            heartData.chol,
+            600,
+            "chol-value",
+            200
+          );
+          updateProgressBar(
+            "thalach-section",
+            heartData.thalach,
+            200,
+            "thalach-value",
+            150
+          );
+          updateProgressBar(
+            "oldpeak-section",
+            heartData.oldpeak,
+            6.2,
+            "oldpeak-value",
+            1.0
+          );
+
+          // Update Clinical Observations (Non-Numerical Data)
+          updateClinicalObservation(
+            "sex-section",
+            "Sex",
+            heartData.sex === "1" ? "Male" : "Female"
+          );
+          updateClinicalObservation(
+            "cp-section",
+            "Chest Pain Type",
+            getChestPainType(heartData.cp)
+          );
+          updateClinicalObservation(
+            "fbs-section",
+            "Fasting Blood Sugar",
+            heartData.fbs === "1" ? "Yes" : "No"
+          );
+          updateClinicalObservation(
+            "restecg-section",
+            "Resting ECG",
+            getRestingECG(heartData.restecg)
+          );
+          updateClinicalObservation(
+            "exang-section",
+            "Exercise-induced Angina",
+            heartData.exang === "1" ? "Yes" : "No"
+          );
+          updateClinicalObservation(
+            "slope-section",
+            "Slope of ST Segment",
+            getSlope(heartData.slope)
+          );
+          updateClinicalObservation(
+            "ca-section",
+            "Number of Major Vessels",
+            heartData.ca
+          );
+          updateClinicalObservation(
+            "thal-section",
+            "Thalassemia",
+            getThalassemia(heartData.thal)
+          );
+        } else {
+          console.error("No heart data found in localStorage.");
+        }
+      };
+
+      // Function to update progress bars dynamically with color indication
+      function updateProgressBar(
+        sectionId,
+        value,
+        maxValue,
+        valueDisplayId,
+        normalLimit
+      ) {
+        if (value === undefined || value === null || value === "") {
+          console.warn(`No data for ${sectionId}`);
+          return;
+        }
+
+        const section = document.getElementById(sectionId);
+        const progressBar = section.querySelector(".progress02");
+        const valueDisplay = document.getElementById(valueDisplayId);
+
+        // Calculate percentage of max value
+        const percentage = Math.min((value / maxValue) * 100, 100);
+        progressBar.style.width = `${percentage}%`;
+
+        // Change color based on normal limit
+        progressBar.style.backgroundColor =
+          value > normalLimit ? "red" : "green";
+
+        // Update value display
+        valueDisplay.textContent = value;
+      }
+
+      // Function to update clinical observations dynamically
+      function updateClinicalObservation(sectionId, label, value) {
+        const section = document.getElementById(sectionId);
+        section.innerHTML = `${label}: <b>${value}</b>`;
+      }
+
+      // Helper functions for clinical observations
+      function getChestPainType(value) {
+        switch (value) {
+          case "0":
+            return "Typical Angina";
+          case "1":
+            return "Atypical Angina";
+          case "2":
+            return "Non-anginal Pain";
+          case "3":
+            return "Asymtomatic";
+          default:
+            return "Not Provided";
+        }
+      }
+
+      function getRestingECG(value) {
+        switch (value) {
+          case "0":
+            return "Normal";
+          case "1":
+            return "ST-T wave abnormality";
+          case "2":
+            return "Left ventricular hypertrophy";
+          default:
+            return "Not Provided";
+        }
+      }
+
+      function getSlope(value) {
+        switch (value) {
+          case "0":
+            return "Upsloping";
+          case "1":
+            return "Flat";
+          case "2":
+            return "Downsloping";
+          default:
+            return "Not Provided";
+        }
+      }
+
+      function getThalassemia(value) {
+        switch (value) {
+          case "0":
+            return "Normal";
+          case "1":
+            return "Fixed Defect";
+          case "2":
+            return "Reversible Defect";
+          case "3":
+            return "(Given in Dataset)";
+          default:
+            return "Not Provided";
+        }
+      }
+      
+      window.onload = function () { 
+    // Retrieve the prediction result from context (passed by the view)
+    const predictionResult = "{{ prediction_result }}";
+
+    if (predictionResult === 'negative') {
+        document.getElementById("negative-button").click(); // Simulate click for negative
+        document.getElementById("positive-button").disabled = true; // Disable positive button
+    } else if (predictionResult === 'positive') {
+        document.getElementById("positive-button").click(); // Simulate click for positive
+        document.getElementById("negative-button").disabled = true; // Disable negative button
+    }
+};
+    
+    </script>
+  </body>
+</html>

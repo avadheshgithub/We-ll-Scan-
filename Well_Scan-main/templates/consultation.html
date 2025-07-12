@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Find Your Perfect Doctor</title>
+  <link rel="shortcut icon" type="image/x-icon" href="static/img/logo/well_scan_logo.jpg" style="border-radius : 50%">
+
+  <link rel="stylesheet" href="/static/header_navbar.css" />
+  <link rel="stylesheet" href="/static/footer.css">
+  <link rel="shortcut icon" type="image/x-icon" href="/static/img/logo/well_scan_logo.jpg" style="border-radius : 50%">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
+  <style>
+
+    body {
+      min-height: 100vh;
+      background: url('../static/img/bg/consultation.jpg') no-repeat center center fixed;
+      background-size: cover;
+      color: #ffffff;
+      padding-top:5rem;
+    }
+
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      font-weight: bold;
+      color: #ffffff;
+      text-align: center;
+      margin-bottom: 2rem;
+      margin-top:5rem;
+    }
+
+    .filters {
+      backdrop-filter: blur(8px);
+      background-color: rgba(255, 255, 255, 0.1);
+      border-radius: 1rem;
+      padding: 1.5rem;
+      margin-bottom: 2rem;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .filters-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+    }
+
+    @media (max-width: 768px) {
+      .filters-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .search-container {
+      position: relative;
+    }
+
+    .search-container::before {
+      content: "🔍";
+      position: absolute;
+      left: 0.75rem;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #9ca3af;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 0.5rem 1rem;
+      border: 1px solid #e5e7eb;
+      border-radius: 0.5rem;
+      outline: none;
+      transition: all 0.3s ease;
+      background-color: #1f2937;
+      color: #ffffff;
+    }
+
+    input {
+      padding-left: 2.5rem;
+    }
+
+    input:focus, select:focus {
+      border-color: #a78bfa;
+      box-shadow: 0 0 0 3px rgba(167, 139, 250, 0.2);
+    }
+
+    .doctors-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .doctor-card {
+      backdrop-filter: blur(8px);
+      background-color: rgba(255, 255, 255, 0.1);
+      border-radius: 1rem;
+      padding: 1.5rem;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      transition: all 0.3s ease;
+      cursor: pointer; /* Add cursor pointer */
+    }
+
+    .doctor-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15);
+    }
+
+    .image-container {
+      position: relative;
+      margin-bottom: 1rem;
+    }
+
+    .doctor-image {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 0.5rem;
+    }
+
+    .rating-badge {
+      position: absolute;
+      top: 0.5rem;
+      right: 0.5rem;
+      background-color: black;
+      backdrop-filter: blur(4px);
+      padding: 0.25rem 0.5rem;
+      border-radius: 9999px;
+      display: flex;
+      align-items: center;
+      gap: 0.25rem;
+    }
+
+    .rating-badge::before {
+      content: "⭐";
+      font-size: 0.875rem;
+    }
+
+    .doctor-name {
+      font-size: 1.25rem;
+      font-weight: bold;
+      color: #ffffff;
+      margin-bottom: 0.5rem;
+    }
+
+    .specialty {
+      color: black;
+      font-weight: bold;
+      margin-bottom: 0.75rem;
+    }
+
+    .info-item {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: #d1d5db;
+      margin-bottom: 0.5rem;
+    }
+
+    .price {
+      color: #059669;
+      font-weight: 600;
+    }
+
+    .book-button {
+      width: 100%;
+      margin-top: 1rem;
+      padding: 0.5rem 1rem;
+      background: linear-gradient(to right, #7c3aed, #2563eb);
+      color: white;
+      border: none;
+      border-radius: 0.5rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .book-button:hover {
+      background: linear-gradient(to right, #6d28d9, #1d4ed8);
+    }
+
+    .navbar-logo {
+      display: flex;
+      align-items: center;
+      gap: 12px; /* Space between logo and text */
+      text-decoration: none;
+    }
+
+    /* Circular Logo with Glassmorphism */
+    .logo-container {
+      width: 70px;
+      height: 70px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.15); /* Glass effect */
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      box-shadow: 0 4px 10px rgba(255, 255, 255, 0.3);
+      transition: all 0.4s ease-in-out;
+      overflow: hidden;
+    }
+
+    /* Logo Image */
+    .logo-img {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      transition: transform 0.3s ease, filter 0.3s ease;
+    }
+
+    /* Hover Effects */
+    .navbar-logo:hover .logo-container {
+      background: rgba(255, 255, 255, 0.3);
+      box-shadow: 0 6px 15px rgba(255, 255, 255, 0.4);
+      transform: scale(1.05);
+    }
+
+    .navbar-logo:hover .logo-img {
+      transform: scale(1.1);
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .logo-container {
+        width: 40px;
+        height: 40px;
+      }
+      .logo-img {
+        width: 30px;
+        height: 30px;
+      }
+      .navbar-name {
+        font-size: 18px;
+      }
+    }
+    .glass-navbar{
+        margin-bottom:30px;
+    }
+  </style>
+</head>
+<body>
+    <div>
+        <div class="glass-navbar">
+          <div class="navbar-logo">
+            <a href="/">
+              <div class="logo-container">
+                <img src="static/img/logo/well_scan_logo.jpg" alt="Well Scan Logo" class="logo-img">
+              </div>
+            </a>
+          </div>        
+          <div class="menu">
+            <ul>
+              {% if user.is_authenticated %}
+              <li class="username">👋 Hello, {{ user.username }}!</li>
+              <li><a href="/">Home</a></li>
+              <li><a href="/diet">Diet Chart</a></li>
+              <li><a href="/#services">Services</a></li>
+              <li><a href="/contact">Contact Us</a></li>
+              <li><a href="/consultation">Consultation</a></li>
+      
+              <div class="admin-container">
+                <div class="admin-logo" onclick="toggleDropdown()">
+                    <i class="fas fa-user-shield"></i>
+                    <div class="dropdown-menu">
+                      <form method="POST" action="{% url 'logout' %}">
+                          {% csrf_token %}
+                          <button type="submit" style="background: none; border: none; cursor: pointer; color: blue;">Logout</button>
+                      </form>
+                  </div>
+              </div>
+          
+              {% else %}
+              <li><a href="/">Home</a></li>
+              <li><a href="/diet">Diet Chart</a></li>
+              <li><a href="/#services">Services</a></li>
+              <li><a href="/contact">Contact Us</a></li>
+              <li><a href="/consultation">Consultation</a></li>
+      
+              <div class="admin-container">
+                <div class="admin-logo" onclick="toggleDropdown()">
+                    <i class="fas fa-user-shield"></i>
+                </div>
+                <div class="dropdown-menu">
+                    <a href="/login">Login</a>
+                </div>
+            </div>
+                {% endif %}
+            </ul>
+          </div>
+        </div>
+      </div>
+
+  <div class="container">
+    <h1>Find Your Perfect Doctor</h1>
+
+    <div class="filters">
+      <div class="filters-grid">
+        <div class="search-container">
+          <input type="text" placeholder="Search doctors...">
+        </div>
+
+        <select>
+          <option value="">All Specialties</option>
+          <option value="cardiologist">Cardiologist</option>
+          <option value="neurologist">Neurologist</option>
+          <option value="pediatrician">Pediatrician</option>
+          <option value="dermatologist">Dermatologist</option>
+        </select>
+
+        <select>
+          <option value="rating">Sort by Rating</option>
+          <option value="price">Sort by Price</option>
+          <option value="experience">Sort by Experience</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="doctors-grid">
+      <div class="doctor-card" onclick="window.location.href='mailto:sarah.wilson@example.com'">
+        <div class="image-container">
+          <img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=400&h=400&fit=crop" alt="Dr. Sarah Wilson" class="doctor-image">
+          <div class="rating-badge">4.8</div>
+        </div>
+        <h3 class="doctor-name">Dr. Sarah Wilson</h3>
+        <p class="specialty">Cardiologist</p>
+        <div class="info-item">
+          <span>⏰</span>
+          <span>12 years experience</span>
+        </div>
+        <div class="info-item">
+          <span>📊</span>
+          <span>42 years old</span>
+        </div>
+        <div class="info-item price">
+          <span>💰</span>
+          <span>$150/hour</span>
+        </div>
+        <button class="book-button">Book Appointment</button>
+      </div>
+
+      <div class="doctor-card" onclick="window.location.href='mailto:james.chen@example.com'">
+        <div class="image-container">
+          <img src="https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=400&h=400&fit=crop" alt="Dr. James Chen" class="doctor-image">
+          <div class="rating-badge">4.9</div>
+        </div>
+        <h3 class="doctor-name">Dr. James Chen</h3>
+        <p class="specialty">Neurologist</p>
+        <div class="info-item">
+          <span>⏰</span>
+          <span>15 years experience</span>
+        </div>
+        <div class="info-item">
+          <span>📊</span>
+          <span>45 years old</span>
+        </div>
+        <div class="info-item price">
+          <span>💰</span>
+          <span>$180/hour</span>
+        </div>
+        <button class="book-button">Book Appointment</button>
+      </div>
+
+      <div class="doctor-card" onclick="window.location.href='mailto:emily.brooks@example.com'">
+        <div class="image-container">
+          <img src="https://images.unsplash.com/photo-1594824476967-48c8b964273f?w=400&h=400&fit=crop" alt="Dr. Emily Brooks" class="doctor-image">
+          <div class="rating-badge">4.7</div>
+        </div>
+        <h3 class="doctor-name">Dr. Emily Brooks</h3>
+        <p class="specialty">Pediatrician</p>
+        <div class="info-item">
+          <span>⏰</span>
+          <span>8 years experience</span>
+        </div>
+        <div class="info-item">
+          <span>📊</span>
+          <span>36 years old</span>
+        </div>
+        <div class="info-item price">
+          <span>💰</span>
+          <span>$120/hour</span>
+        </div>
+        <button class="book-button">Book Appointment</button>
+      </div>
+
+      <div class="doctor-card" onclick="window.location.href='mailto:michael.torres@example.com'">
+        <div class="image-container">
+          <img src="https://images.unsplash.com/photo-1622253692010-333f2da6031d?w=400&h=400&fit=crop" alt="Dr. Michael Torres" class="doctor-image">
+          <div class="rating-badge">4.6</div>
+        </div>
+        <h3 class="doctor-name">Dr. Michael Torres</h3>
+        <p class="specialty">Dermatologist</p>
+        <div class="info-item">
+          <span>⏰</span>
+          <span>10 years experience</span>
+        </div>
+        <div class="info-item">
+          <span>📊</span>
+          <span>38 years old</span>
+        </div>
+        <div class="info-item price">
+          <span>💰</span>
+          <span>$160/hour</span>
+        </div>
+        <button class="book-button">Book Appointment</button>
+      </div>
+
+      <div class="doctor-card" onclick="window.location.href='mailto:lisa.johnson@example.com'">
+        <div class="image-container">
+          <img src="https://images.unsplash.com/photo-1594824476967-48c8b964273f?w=400&h=400&fit=crop" alt="Dr. Lisa Johnson" class="doctor-image">
+          <div class="rating-badge">5.0</div>
+        </div>
+        <h3 class="doctor-name">Dr. Lisa Johnson</h3>
+        <p class="specialty">Cardiologist</p>
+        <div class="info-item">
+          <span>⏰</span>
+          <span>20 years experience</span>
+        </div>
+        <div class="info-item">
+          <span>📊</span>
+          <span>48 years old</span>
+        </div>
+        <div class="info-item price">
+          <span>💰</span>
+          <span>$200/hour</span>
+        </div>
+        <button class="book-button">Book Appointment</button>
+      </div>
+
+      <div class="doctor-card" onclick="window.location.href='mailto:emily.brooks@example.com'">
+        <div class="image-container">
+          <img src="https://images.unsplash.com/photo-1594824476967-48c8b964273f?w=400&h=400&fit=crop" alt="Dr. Emily Brooks" class="doctor-image">
+          <div class="rating-badge">4.7</div>
+        </div>
+        <h3 class="doctor-name">Dr. Emily Brooks</h3>
+        <p class="specialty">Pediatrician</p>
+        <div class="info-item">
+          <span>⏰</span>
+          <span>8 years experience</span>
+        </div>
+        <div class="info-item">
+          <span>📊</span>
+          <span>36 years old</span>
+        </div>
+        <div class="info-item price">
+          <span>💰</span>
+          <span>$120/hour</span>
+        </div>
+        <button class="book-button">Book Appointment</button>
+      </div>
+
+      <div class="doctor-card" onclick="window.location.href='mailto:lisa.johnson@example.com'">
+        <div class="image-container">
+          <img src="https://images.unsplash.com/photo-1594824476967-48c8b964273f?w=400&h=400&fit=crop" alt="Dr. Lisa Johnson" class="doctor-image">
+          <div class="rating-badge">5.0</div>
+        </div>
+        <h3 class="doctor-name">Dr. Lisa Johnson</h3>
+        <p class="specialty">Cardiologist</p>
+        <div class="info-item">
+          <span>⏰</span>
+          <span>20 years experience</span>
+        </div>
+        <div class="info-item">
+          <span>📊</span>
+          <span>48 years old</span>
+        </div>
+        <div class="info-item price">
+          <span>💰</span>
+          <span>$200/hour</span>
+        </div>
+        <button class="book-button">Book Appointment</button>
+      </div>
+
+      <div class="doctor-card" onclick="window.location.href='mailto:sarah.wilson@example.com'">
+        <div class="image-container">
+          <img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=400&h=400&fit=crop" alt="Dr. Sarah Wilson" class="doctor-image">
+          <div class="rating-badge">4.8</div>
+        </div>
+        <h3 class="doctor-name">Dr. Sarah Wilson</h3>
+        <p class="specialty">Cardiologist</p>
+        <div class="info-item">
+          <span>⏰</span>
+          <span>12 years experience</span>
+        </div>
+        <div class="info-item">
+          <span>📊</span>
+          <span>42 years old</span>
+        </div>
+        <div class="info-item price">
+          <span>💰</span>
+          <span>$150/hour</span>
+        </div>
+        <button class="book-button">Book Appointment</button>
+      </div>
+      
+    </div>
+  </div>
+</body>
+    <!-- ========================= footer start ========================= -->
+
+    <footer class="footer" style="margin-top:4rem">
+        <div class="container-footer">
+          <div class="row">
+            <div class="footer-col">
+              <div class="footer-widget mb-30">
+                <a href="index.html" class="logo"
+                  ><img src="static/img/logo/well_scan_logo.jpg" alt=""
+                /></a>
+              </div>
+            </div>
+            <div class="footer-col">
+              <h4>Services</h4>
+              <ul>
+                <li><a href="/heart">Heart Checkup</a></li>
+                <li><a href="/kidney">Kidney Checkup</a></li>
+                <li><a href="/diebetes">Diebetes Checkup</a></li>
+                <li><a href="#">Order Medicine</a></li>
+                <li><a href="#">Find Nearest Collection Centre</a></li>
+              </ul>
+            </div>
+            <div class="footer-col">
+              <h4>Company</h4>
+              <ul>
+                <li><a href="/about">About Us</a></li>
+                <li><a href="#">Careers</a></li>
+                <li><a href="#">Partner with We'll Scan</a></li>
+              </ul>
+            </div>
+            <div class="footer-col">
+              <h4>About Team</h4>
+              <ul>
+                <li><a href="/team">Team</a></li>
+              </ul>
+            </div>
+            <div class="footer-col">
+              <h4>follow us</h4>
+              <div class="social-links">
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </footer>
+      <div class="text-center p-2" style="background-color: #ffff ;color:black; font-weight:bold">
+        © 2025 Copyright @ WellScan.com
+      </div>
+      <!-- ========================= footer end ========================= -->
+</html>

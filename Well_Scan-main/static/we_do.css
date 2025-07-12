@@ -1,0 +1,23 @@
+.we-do-section {
+  position: relative;
+}
+
+.we-do-section .shape {
+  left: -100px;
+}
+
+.we-do-section .we-do-item {
+  text-align: center;
+}
+
+.we-do-section .we-do-item .we-do-icon {
+  width: 87px;
+  height: 87px;
+  line-height: 83px;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 50%;
+  -webkit-box-shadow: 0 0 25px rgba(0, 173, 181, 0.15);
+  box-shadow: 0 0 25px rgba(0, 173, 181, 0.15);
+}

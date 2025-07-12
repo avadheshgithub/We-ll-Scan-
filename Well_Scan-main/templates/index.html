@@ -1,0 +1,1034 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html class="no-js" lang="">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <title>WELL SCAN - Improve Health With Us</title>
+	  <link rel="shortcut icon" type="image/x-icon" href="static/img/logo/well_scan_logo.jpg" style="border-radius : 50%">
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+    />
+
+
+    <link rel="stylesheet" href="/static/animate.css" />
+    <link rel="stylesheet" href="/static/bootstrap-5.0.5-alpha.min.css" />
+    <link rel="stylesheet" href="/static/tiny-slider.css" />
+
+    <link rel="stylesheet" href="/static/hero-section.css" />
+    <link rel="stylesheet" href="/static/header_navbar.css" />
+    <link rel="stylesheet" href="/static/we_do.css" />
+    <link rel="stylesheet" href="/static/service_section.css" />
+    <link rel="stylesheet" href="/static/faq_section.css" />
+    <link rel="stylesheet" href="/static/footer.css" />
+    <link rel="stylesheet" href="/static/preloder.css">
+    <link rel="stylesheet" href="/static/blog_section.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.lineicons.com/3.0/lineicons.css">
+  </head>
+
+  <body>
+    <!-- ========================= preloader start ========================= -->
+    <div class="preloader">
+      <div class="loader">
+        <div class="ytp-spinner">
+          <div class="ytp-spinner-container">
+            <div class="ytp-spinner-rotator">
+              <div class="ytp-spinner-left">
+                <div class="ytp-spinner-circle"></div>
+              </div>
+              <div class="ytp-spinner-right">
+                <div class="ytp-spinner-circle"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+<!-- ========================= Navbar_Start ========================= -->
+
+
+<div>
+  <div class="glass-navbar">
+    <div class="navbar-logo">
+      <a href="/">
+        <div class="logo-container">
+          <img src="static/img/logo/well_scan_logo.jpg" alt="Well Scan Logo" class="logo-img">
+        </div>
+      </a>
+    </div>        
+    <div class="menu">
+      <ul>
+        {% if user.is_authenticated %}
+        <li class="username">👋 Hello, {{ user.username }}!</li>
+        <li><a href="/">Home</a></li>
+        <li><a href="/diet">Diet Chart</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="/contact">Contact Us</a></li>
+        <li><a href="/consultation">Consultation</a></li>
+
+        <div class="admin-container">
+          <div class="admin-logo" onclick="toggleDropdown()">
+              <i class="fas fa-user-shield"></i>
+              <div class="dropdown-menu">
+                <form method="POST" action="{% url 'logout' %}">
+                    {% csrf_token %}
+                    <button type="submit" style="background: none; border: none; cursor: pointer; color: blue;">Logout</button>
+                </form>
+            </div>
+        </div>
+    
+        {% else %}
+        <li><a href="/">Home</a></li>
+        <li><a href="/diet">Diet Chart</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="/contact">Contact Us</a></li>
+        <li><a href="/consultation">Consultation</a></li>
+
+        <div class="admin-container">
+          <div class="admin-logo" onclick="toggleDropdown()">
+              <i class="fas fa-user-shield"></i>
+          </div>
+          <div class="dropdown-menu">
+              <a href="/login">Login</a>
+          </div>
+      </div>
+          {% endif %}
+      </ul>
+    </div>
+  </div>
+</div>
+<!-- ========================= Navbar_End ========================= -->
+
+    <!-- ========================= slider-section start ========================= -->
+    <div class="slider-wrapper">
+      <section class="slider-section">
+        <div class="slider-active slick-style">
+          <div
+            class="single-slider img-bg"
+            style="background-image: url('static/img/slider/scroll_bg4.jpg'); width: 100%%; height:100%%" 
+          >
+            <div class="container">
+              <div class="row">
+                <div class="col-xl-7 col-lg-8 col-md-10">
+                  <div class="slider-content">
+                    <h1
+                      data-animation="fadeInDown"
+                      data-duration="1.5s"
+                      data-delay=".5s"
+                    >
+                      Complete Healthcare Solution
+                    </h1>
+                    <p
+                      data-animation="fadeInLeft"
+                      data-duration="1.5s"
+                      data-delay=".7s"
+                    >
+                    Well Scan provides a comprehensive healthcare solution with AI-powered predictions, early disease detection, personalized health insights, and seamless access to medical resources, ensuring proactive and informed healthcare decisions for every user.
+                    </p>
+                    <a
+                      href="#about"
+                      class="btn theme-btn page-scroll"
+                      data-animation="fadeInUp"
+                      data-duration="1.5s"
+                      data-delay=".9s"
+                      >Learn More</a
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            class="single-slider img-bg"
+            style="background-image: url('static/img/slider/scroll_bg2.jpg')"
+          >
+            <div class="container">
+              <div class="row">
+                <div class="col-xl-7 col-lg-8 col-md-10">
+                  <div class="slider-content">
+                    <h1
+                      data-animation="fadeInDown"
+                      data-duration="1.5s"
+                      data-delay=".5s"
+                    >
+                    Cutting-Edge Models For High Accuracy
+                    </h1>
+                    <p
+                      data-animation="fadeInLeft"
+                      data-duration="1.5s"
+                      data-delay=".7s"
+                    >
+                    Well Scan utilizes advanced machine learning models to provide precise health predictions, ensuring reliable diagnoses, personalized insights, and data-driven recommendations for proactive and effective healthcare decisions that benefits users as well as doctors.
+                    </p>
+                    <a
+                      href="#contact"
+                      class="btn theme-btn page-scroll"
+                      data-animation="fadeInUp"
+                      data-duration="1.5s"
+                      data-delay=".9s"
+                      >Make Appoinment</a
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            class="single-slider img-bg"
+            style="background-image: url('static/img/slider/scroll_bg3.jpg')"
+          >
+            <div class="container">
+              <div class="row">
+                <div class="col-xl-7 col-lg-8 col-md-10">
+                  <div class="slider-content">
+                    <h1
+                      data-animation="fadeInDown"
+                      data-duration="1.5s"
+                      data-delay=".5s"
+                    >
+                      Your Health is Our Top Priority
+                    </h1>
+                    <p
+                      data-animation="fadeInLeft"
+                      data-duration="1.5s"
+                      data-delay=".7s"
+                    >
+                    At WellScan, your health is first. AI-driven models used to provide accurate predictions for conditions like heart disease, diabetes, and arthritis. We provide health insights, recommended tests, and access to nearby hospitals, ensuring proactive healthcare management. Stay informed, stay healthy!                    </p>
+                    <a
+                      href="#services"
+                      class="btn theme-btn page-scroll"
+                      data-animation="fadeInUp"
+                      data-duration="1.5s"
+                      data-delay=".9s"
+                      >Our Services</a
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- ========================= slider-section end ========================= -->
+    </div>
+
+    
+
+	<!--========================= we-do-section start========================= -->
+	<section class="we-do-section pt-150">
+		<div class="shape shape-1">
+			<img src="static/img/shapes/shape-1.svg" alt="">
+		</div>
+		<div class="container">
+			<div class="row">
+				<div class="col-xl-8 mx-auto">
+					<div class="section-title text-center mb-55">
+						<span class="wow fadeInDown" data-wow-delay=".2s">What We Do</span>
+						<h2 class="mb-15 wow fadeInUp" data-wow-delay=".4s">What We Provide for Your Health</h2>
+						<p class="wow fadeInUp" data-wow-delay=".6s">We provide AI-powered health predictions, personalized insights, recommended tests, and seamless healthcare solutions to enhance your well-being and ensure proactive healthcare management.</p>
+
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-xl-12">
+					<div class="graph mb-60">
+						<img src="static/img/we-do/we_do.png" alt="">
+					</div>
+				</div>
+				<div class="col-lg-3">
+					<div class="we-do-item mb-30">
+						<div class="we-do-icon mb-25">
+							<svg xmlns="http://www.w3.org/2000/svg" width="40.839" height="48.598" viewBox="0 0 40.839 48.598">
+                <g id="we-do-1" transform="translate(-12.184 -5)">
+                    <path id="Path_48" data-name="Path 48"
+                        d="M33.271,74.379H31.932c-.177,0-17.733-.153-19.26-5.609-1.226-4.92-.732-11.553,8.551-15.352.684-.279,1.908-.753,1.908-.753a4.824,4.824,0,0,0,1.368-.906l.038-.037,1.18-1.079a1.556,1.556,0,0,1,1.09-.468,1.443,1.443,0,0,1,1.379,1.168L32.6,63.714l4.364-12.367a1.426,1.426,0,0,1,1.362-1.164,1.551,1.551,0,0,1,1.092.481l1.148,1.014a.608.608,0,0,1,.051.048,4.775,4.775,0,0,0,1.369.9s1.308.506,2,.788c9.284,3.8,9.778,10.431,8.558,15.327C51,74.227,33.448,74.379,33.271,74.379ZM25.782,53.046a6.544,6.544,0,0,1-2,1.314s-1.2.466-1.875.74c-6.487,2.655-9.005,7.1-7.483,13.206.83,2.963,11.994,4.257,17.5,4.257h1.339c5.51,0,16.674-1.293,17.511-4.283,1.517-6.082-1-10.526-7.49-13.18-.677-.278-1.962-.775-1.962-.775a6.519,6.519,0,0,1-1.991-1.307l-.794-.7L33.751,65.9A1.205,1.205,0,0,1,32.6,66.92c-.255,0-.881-.1-1.165-1.06L26.6,52.3Z"
+                        transform="translate(0 -20.782)" fill="#0D2F2D" />
+                    <g id="Group_129" data-name="Group 129" transform="translate(38.284 37.747)">
+                        <g id="Group_128" data-name="Group 128">
+                            <path id="Path_49" data-name="Path 49"
+                                d="M65.947,73.917H63.366a.649.649,0,0,1-.649-.649V71.72H61.169a.649.649,0,0,1-.649-.649V68.49a.649.649,0,0,1,.649-.65h1.548V66.294a.648.648,0,0,1,.649-.649h2.582a.649.649,0,0,1,.649.649v1.547h1.548a.649.649,0,0,1,.649.65v2.581a.648.648,0,0,1-.649.649H66.6v1.549A.65.65,0,0,1,65.947,73.917Zm-1.933-1.3H65.3V71.1a.7.7,0,0,1,.676-.676H67.5V69.139H65.975a.7.7,0,0,1-.676-.676v-1.52H64.014v1.52a.7.7,0,0,1-.676.676H61.818v1.284h1.521a.7.7,0,0,1,.676.676Z"
+                                transform="translate(-60.52 -65.645)" fill="#0D2F2D" />
+                        </g>
+                    </g>
+                    <path id="Path_50" data-name="Path 50"
+                        d="M41.3,36.019c-4.59,0-7.379-4.555-7.948-6.633-.121-.44-.231-.937-.327-1.483A3.362,3.362,0,0,1,31.8,26.385a14.03,14.03,0,0,1-.576-2.959,4.754,4.754,0,0,1,.4-2.563,6.141,6.141,0,0,1,.449-2.3.909.909,0,0,1,1.751.485,4.972,4.972,0,0,0-.385,2.058.9.9,0,0,1-.175.536,3.005,3.005,0,0,0-.228,1.632,12.493,12.493,0,0,0,.45,2.429,1.517,1.517,0,0,0,.758.807.908.908,0,0,1,.506.678,16.577,16.577,0,0,0,.357,1.715c.387,1.416,2.574,5.3,6.2,5.3,3.655,0,5.919-3.937,6.289-5.294a16.116,16.116,0,0,0,.358-1.716.908.908,0,0,1,.506-.68,1.521,1.521,0,0,0,.762-.814,12.3,12.3,0,0,0,.445-2.406,2.962,2.962,0,0,0-.231-1.656.907.907,0,0,1-.171-.531,6.382,6.382,0,0,0-.294-2.138.908.908,0,0,1,1.774-.39,7.336,7.336,0,0,1,.336,2.287,4.887,4.887,0,0,1,.4,2.589h0a13.945,13.945,0,0,1-.571,2.924,3.38,3.38,0,0,1-1.23,1.525c-.077.436-.186.965-.328,1.485C48.713,31.7,45.708,36.019,41.3,36.019Z"
+                        transform="translate(-8.746 -5.917)" fill="#0D2F2D" />
+                    <path id="Path_51" data-name="Path 51"
+                        d="M50.512,14.093H32.943a.922.922,0,0,1-.922-.921C32.021,8.207,35.831,5,41.728,5s9.707,3.207,9.707,8.171A.922.922,0,0,1,50.512,14.093Zm-16.59-1.843H49.533c-.5-3.964-4.266-5.406-7.806-5.406S34.424,8.285,33.922,12.249Z"
+                        transform="translate(-9.125)" fill="#0D2F2D" />
+                </g>
+            </svg>
+            
+						</div>
+						<h5>AI Predictions</h5>
+					</div>
+				</div>
+				<div class="col-lg-3">
+					<div class="we-do-item mb-30">
+						<div class="we-do-icon mb-25">
+							<svg xmlns="http://www.w3.org/2000/svg" width="53.947" height="42.07" viewBox="0 0 53.947 42.07">
+								<g id="we-do-2" transform="translate(12.41 -88.75)"  fill="#0D2F2D">
+									<g id="Group_133" data-name="Group 133" transform="translate(-12.41 88.75)">
+										<path id="Path_52" data-name="Path 52"
+											d="M38.24,45.246h2.3v2.391a1.151,1.151,0,1,0,2.3,0V45.246h2.391a1.151,1.151,0,1,0,0-2.3H42.846V40.551A1.172,1.172,0,0,0,41.694,39.4a1.253,1.253,0,0,0-1.151,1.24v2.391H38.151a1.111,1.111,0,1,0,.089,2.214Z"
+											transform="translate(-5.638 -11.855)"  fill="#0D2F2D" />
+										<path id="Path_53" data-name="Path 53"
+											d="M28.566,52.182H51.328a2.665,2.665,0,0,0,2.657-2.657V37.3h2.746a1.151,1.151,0,0,0,0-2.3H23.251a1.151,1.151,0,1,0,0,2.3H26V49.525A2.537,2.537,0,0,0,28.566,52.182Zm23.205-2.657a.418.418,0,0,1-.443.443H28.566a.418.418,0,0,1-.443-.443V37.3H51.771Z"
+											transform="translate(-3.935 -11.352)"  fill="#0D2F2D" />
+										<path id="Path_54" data-name="Path 54"
+											d="M37.542,24.5a4.9,4.9,0,0,0-1.683,1.86,3.935,3.935,0,0,0-.266,2.214v2.037a1.1,1.1,0,0,0,1.151,1.063h0a1.1,1.1,0,0,0,1.063-1.151V28.393a5.067,5.067,0,0,1,.089-1.24,4.009,4.009,0,0,1,1.063-1.063l.8-.531L41,24.85a2.22,2.22,0,0,0,.62-.354.087.087,0,0,0,.089-.089l.8.8c.62.531,1.151,1.063,1.771,1.594l1.329,1.24.709-.709c.886-.8,1.683-1.506,2.48-2.3a4.091,4.091,0,0,0,.62-.62l.089.089c.177.089.443.177.62.266l.266.089c.266.089.443.266.531.266l.709.443c.177.089.354.266.531.354a2.862,2.862,0,0,1,1.063.974,5.067,5.067,0,0,1,.089,1.24v2.037a1.16,1.16,0,0,0,1.063,1.151h0a1.231,1.231,0,0,0,1.151-1.063V28.3a4.914,4.914,0,0,0-.266-2.214,6.075,6.075,0,0,0-2.391-2.3l-.8-.443c-.177-.089-.443-.266-.62-.354l-.266-.089c-.266-.089-.443-.266-.709-.354l-.089-.089a1.758,1.758,0,0,0-2.214.177l-.177.177-.709.709c-.531.531-1.151,1.063-1.683,1.594-.531-.443-1.063-.974-1.594-1.506a5.73,5.73,0,0,0-.8-.709l-.266-.266a1.442,1.442,0,0,0-1.683-.354c-.177.089-.443.177-.62.266-.266.089-.443.266-.709.354l-1.417.886C38.162,24.053,37.9,24.23,37.542,24.5Z"
+											transform="translate(-5.472 -9.882)" fill="#0D2F2D" />
+										<path id="Path_55" data-name="Path 55"
+											d="M49,16.714l-.089.443a1.161,1.161,0,0,0,.709,1.417c.089,0,.177.089.354.089a1.241,1.241,0,0,0,1.063-.8l.177-.443c.089-.354.266-.709.354-1.151a9.59,9.59,0,0,0,.266-3.1A5.087,5.087,0,0,0,47.052,8.3h-.531a6.208,6.208,0,0,0-4.34,1.329A5.828,5.828,0,0,0,40.5,13.437a10.689,10.689,0,0,0,.8,4.428,1.177,1.177,0,0,0,.886.709,1.1,1.1,0,0,0,1.24-.974,1.313,1.313,0,0,0-.089-.62,7.714,7.714,0,0,1-.62-3.454,3.683,3.683,0,0,1,.974-2.3,3.927,3.927,0,0,1,2.746-.709h.443a3.062,3.062,0,0,1,2.834,2.923,5.437,5.437,0,0,1-.266,2.3A10.39,10.39,0,0,0,49,16.714Z"
+											transform="translate(-6.036 -8.3)" fill="#0D2F2D" />
+										<path id="Path_56" data-name="Path 56"
+											d="M7.228,20.257a4.441,4.441,0,0,0,4.428-4.428A4.5,4.5,0,0,0,7.228,11.4a4.428,4.428,0,1,0,0,8.857Zm0-6.731A2.214,2.214,0,1,1,5.014,15.74,2.193,2.193,0,0,1,7.228,13.526Z"
+											transform="translate(-1.729 -8.654)" fill="#0D2F2D" />
+										<path id="Path_57" data-name="Path 57"
+											d="M18.978,45.761c-.531,2.214-1.151,4.428-1.683,6.731a1.049,1.049,0,0,0,.8,1.329h.266a1.063,1.063,0,0,0,1.063-.8c.531-2.214,1.151-4.428,1.683-6.731l.177-.531c.443-1.594.974-3.543-.089-5.226a2.921,2.921,0,0,0-2.569-1.329c-.354,0-4.163-.354-5.58-.531-.531-.089-.974-.089-1.506-.177a1.115,1.115,0,1,0-.266,2.214c.443.089.974.089,1.417.177,1.506.177,5.314.531,5.757.531.62,0,.8.177.8.177.531.974.177,2.3-.177,3.631C19.067,45.318,18.978,45.584,18.978,45.761Z"
+											transform="translate(-2.585 -11.751)" fill="#0D2F2D" />
+										<path id="Path_58" data-name="Path 58"
+											d="M1.6,28.616a23.136,23.136,0,0,0,1.24,7.528c.266.974.531,2.037.8,3.1.709,2.391,1.949,3.986,3.72,4.606a10.569,10.569,0,0,0,3.277.531c.974,0,1.949-.089,2.923-.177L13.29,41.99a12.826,12.826,0,0,1-5.226-.177C7,41.37,6.2,40.4,5.673,38.624c-.266-.974-.531-2.037-.8-3.011A26.232,26.232,0,0,1,3.725,28.7c0-1.417.266-1.949.886-2.3a2.051,2.051,0,0,1,2.126.354,2.6,2.6,0,0,1,.886,1.063c.089.177.089.266.177.443.089.354.266.709.354,1.063a.8.8,0,0,0,.089.443c.089.974.177,2.391,1.506,3.1h.089c.62.354,5.226,2.746,5.226,2.746a1.11,1.11,0,0,0,1.063-1.949c-3.9-2.037-4.96-2.657-5.314-2.746h0c-.266-.089-.354-.886-.354-1.329a1.729,1.729,0,0,0-.089-.62,7.481,7.481,0,0,0-.443-1.506,4.318,4.318,0,0,1-.266-.62,6.368,6.368,0,0,0-1.594-1.86,4.32,4.32,0,0,0-4.34-.531C1.6,25.428,1.6,27.465,1.6,28.616Z"
+											transform="translate(-1.59 -10.105)" fill="#0D2F2D" />
+									</g>
+								</g>
+							</svg>
+						</div>
+						<h5>Health Insights</h5>
+					</div>
+				</div>
+				<div class="col-lg-3">
+					<div class="we-do-item mb-30">
+						<div class="we-do-icon mb-25">
+							<svg xmlns="http://www.w3.org/2000/svg" width="48.152" height="48.154" viewBox="0 0 48.152 48.154">
+								<g id="we-do-3" transform="translate(-1.846 -1.846)">
+									<path id="Path_59" data-name="Path 59"
+										d="M46,18.78A3.994,3.994,0,0,0,42.432,21L32.309,17.386a6.492,6.492,0,0,0,.08-1.008,6.36,6.36,0,0,0-1.262-3.8l5.65-3.767a4.037,4.037,0,1,0-.887-1.333L30.006,11.4a6.367,6.367,0,0,0-7.877-.124L19.685,8.223a4.064,4.064,0,1,0-1.158,1.115l2.45,3.061a6.374,6.374,0,0,0-1.34,3.179H9.894a4,4,0,1,0,0,1.6h9.738a6.335,6.335,0,0,0,.64,2.105L8.221,29.08a4.063,4.063,0,1,0,1.114,1.156l12.136-9.86a.8.8,0,0,0,.571-1.254,4.8,4.8,0,1,1,7.885,0l1.313.915a6.319,6.319,0,0,0,.607-1.117l10.171,3.633c0,.08-.023.15-.023.228a4,4,0,1,0,4-4Zm-6.4-15.21a2.4,2.4,0,1,1-2.4,2.4,2.4,2.4,0,0,1,2.4-2.4Zm-23.215,4.8a2.4,2.4,0,1,1,2.4-2.4A2.4,2.4,0,0,1,16.379,8.373ZM5.972,18.78a2.4,2.4,0,1,1,2.4-2.4,2.4,2.4,0,0,1-2.4,2.4Zm0,16.01a2.4,2.4,0,1,1,2.4-2.4,2.4,2.4,0,0,1-2.4,2.4ZM46,25.184a2.4,2.4,0,1,1,2.4-2.4A2.4,2.4,0,0,1,46,25.184Z"
+										transform="translate(0 0)" fill="#0D2F2D" />
+									<path id="Path_60" data-name="Path 60"
+										d="M44.414,30.808a3.194,3.194,0,0,0-2.4,1.086,3.2,3.2,0,0,0-4.8,0,3.2,3.2,0,0,0-4-.656V21.2a3.2,3.2,0,0,0-6.4,0V34.09a5.588,5.588,0,0,0-4-1.681.8.8,0,0,0-.8.8V47.619a.8.8,0,0,0,.234.566l5.038,5.038h2.264L23.6,47.287V34.09a4.009,4.009,0,0,1,3.2,3.923v5.6a.8.8,0,0,0,1.6,0V21.2a1.6,1.6,0,1,1,3.2,0V35.611a.8.8,0,0,0,1.6,0v-1.6a1.6,1.6,0,0,1,3.2,0v1.6a.8.8,0,1,0,1.6,0v-1.6a1.6,1.6,0,0,1,3.2,0v1.6a.8.8,0,0,0,1.6,0v-1.6a1.6,1.6,0,0,1,3.2,0V53.222h1.6V34.01A3.2,3.2,0,0,0,44.414,30.808Z"
+										transform="translate(-4.02 -3.223)" fill="#0D2F2D" />
+								</g>
+							</svg>
+						</div>
+						<h5>Easy Access</h5>
+					</div>
+				</div>
+				<div class="col-lg-3">
+					<div class="we-do-item mb-30">
+						<div class="we-do-icon mb-25">
+							<svg xmlns="http://www.w3.org/2000/svg" width="46.239" height="51.043" viewBox="0 0 46.239 51.043">
+								<g id="we-do-4" transform="translate(-1273.5 -1752.346)">
+									<g id="Icon_feather-home" data-name="Icon feather-home" transform="translate(1275 1753.846)">
+										<path id="Path_108" data-name="Path 108"
+											d="M4.5,19.815,26.119,3,47.739,19.815V46.239a4.8,4.8,0,0,1-4.8,4.8H9.3a4.8,4.8,0,0,1-4.8-4.8Z"
+											transform="translate(-4.5 -3)" fill="none" stroke="#0D2F2D" stroke-linecap="round"
+											stroke-linejoin="round" stroke-width="3" />
+									</g>
+									<path id="Union_1" data-name="Union 1" d="M7.658,6.87h0v0h0v0Z"
+										transform="translate(1288.853 1775.014)" fill="none" stroke="#0D2F2D" stroke-linecap="round"
+										stroke-linejoin="round" stroke-width="3" />
+								</g>
+							</svg>
+						</div>
+						<h5>Premier Reliability</h5>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!--========================= we-do-section end========================= -->
+  <hr style="border: 1px solid #0D2F2D; margin: 50px 0; width: 80%; justify-self: center;">
+
+    <!--========================= service-section start ========================= -->
+    <section id="services" class="service-section pt-150">
+      <div class="container">
+        <div class="row">
+
+
+          <div class="col-xl-8 mx-auto">
+            <div class="section-title text-center mb-55">
+              <div
+                class="service_heading"
+                style="
+                  background: #0D2F2D;
+                  margin-bottom: 40px;
+                  border-radius: 20px;
+                "
+              >
+                <div class="container">
+                  <h2
+                    style="
+                      color: white;
+                      font-size: 35px;
+                      font-weight: bold;
+                      text-align: center;
+                      padding: 20px;
+                      background-color: #0D2F2D
+                    "
+                  >
+                    Our Healthcare Services
+                  </h2>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+
+
+
+          <div class="col-lg-4 col-md-6">
+            <div class="service-item mb-30">
+              <div class="service-icon mb-25">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="79.557"
+                  height="57.882"
+                  viewBox="0 0 79.557 57.882"
+                >
+                  <g
+                    id="noun_Cardiology_1744691"
+                    transform="translate(0 0.005)"
+                  >
+                    <g
+                      id="Layer_2"
+                      data-name="Layer 2"
+                      transform="translate(0 -0.005)"
+                    >
+                      <g
+                        id="Layer_1"
+                        data-name="Layer 1"
+                        transform="translate(0 0)"
+                      >
+                        <path
+                          id="Path_64"
+                          data-name="Path 64"
+                          d="M38.188,57.877l-1.726-1.448c-.9-.74-21.974-18.449-27.368-29.778a16.444,16.444,0,0,1-1.5-6.365A20.406,20.406,0,0,1,17.145,2.521C23.224-1.163,30.782-.8,38.451,3.547,46.1-.8,53.678-1.163,59.788,2.481a20.43,20.43,0,0,1,9.547,17.757,16.087,16.087,0,0,1-1.5,6.412C62.406,38,40.853,55.689,39.939,56.485ZM26.255,5.449A12.172,12.172,0,0,0,19.89,7.167a15,15,0,0,0-6.866,12.9,10.471,10.471,0,0,0,.088,1.13,10.159,10.159,0,0,0,.883,3.111c4.049,8.513,19.094,21.99,24.2,26.453,5.227-4.439,20.6-17.948,24.663-26.453a10.676,10.676,0,0,0,.979-4.24,15.02,15.02,0,0,0-6.85-12.9C52.58,4.534,47.123,4.924,41.164,8.281l-2.713,2.777L35.762,8.289a19.547,19.547,0,0,0-9.507-2.84Z"
+                          transform="translate(-1.552 0.005)"
+                          fill="#3a424e"
+                        />
+                        <path
+                          id="Path_65"
+                          data-name="Path 65"
+                          d="M29.19,39.18,25.769,27.955l-2.021,4.463H1.949a1.949,1.949,0,1,1,0-3.9H21.234l5.251-11.6,3.866,12.729,7.041-11.782L41.37,29.172l6.786-8.751,5.4,6.07h24.05a1.949,1.949,0,0,1,0,3.9H51.776l-3.445-3.859-8.29,10.7-3.6-10.215Z"
+                          transform="translate(0 -3.455)"
+                          fill="#0D2F2D"
+                        />
+                      </g>
+                    </g>
+                  </g>
+                </svg>
+              </div>
+              <div class="service-content">
+                <h4>Cardiology</h4>
+                <p>
+                  Monitor your heart health effortlessly with our AI-driven software for quick, accurate, and personalized checkups—ensuring a healthier future.
+                </p>
+                <a href="heart" class="read-more"
+                  >Start Test<i class="lni lni-arrow-right"></i
+                ></a>
+              </div>
+              <div class="service-overlay img-bg"></div>
+            </div>
+          </div>
+
+
+
+          <div class="col-lg-4 col-md-6">
+            <div class="service-item mb-30">
+
+              <div class="service-icon mb-25">
+                <img src="static/img/service_icons/kidney.png" alt="Kidney Icon" width="55" height="55">
+              </div>
+
+              <div class="service-content">
+                <h4>Kidney</h4>
+                <p>
+                  Protect your kidneys with advanced AI analysis—detect abnormalities, prevent complications, and stay one step ahead of kidney disease.
+                </p>
+                <a href="kidney" class="read-more"
+                  >Start Test  <i class="lni lni-arrow-right"></i
+                ></a>
+              </div>
+              <div class="service-overlay img-bg"></div>
+            </div>
+          </div>
+
+
+
+          <div class="col-lg-4 col-md-6">
+            <div class="service-item mb-30">
+
+              <div class="service-icon mb-25">
+                <img src="static/img/service_icons/glucosemeter.png" alt="diabetes Icon" width="55" height="55">
+              </div>
+
+              <div class="service-content">
+                <h4>Diabetes</h4>
+                <p>
+                  Manage your blood sugar levels efficiently with our intelligent diabetes detection tool—early insights for a healthier tomorrow.
+                </p>
+                <a href="diebetes" class="read-more"
+                  >Start Test <i class="lni lni-arrow-right"></i
+                ></a>
+              </div>
+              <div class="service-overlay img-bg"></div>
+            </div>
+          </div>
+
+
+          <div class="col-lg-4 col-md-6">
+            <div class="service-item mb-30">
+              <div class="service-icon mb-25">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="48.362"
+                  height="58.163"
+                  viewBox="0 0 48.362 75.163"
+                >
+                  <g
+                    id="noun_knee_joint_2596276"
+                    data-name="noun_knee joint_2596276"
+                    transform="translate(-24.199 -12.537)"
+                  >
+                    <path
+                      id="Path_72"
+                      data-name="Path 72"
+                      d="M51.5,87.7H37.1a2.553,2.553,0,0,1-2.4-1.9c-.2-.9-.4-2.1-.6-3.5-.8-4.7-2-11.9-4.9-16-.4-.5-.8-1.1-1.2-1.6a19.145,19.145,0,0,1-2.5-3.6c-.6-1.2-2.6-5.5,0-8.2,3-3.2,6.7-.1,7.8.9l.4.3a19.761,19.761,0,0,0,3.5,2.6c3.4,1.8,7,1.8,11.1,0,.2-.1.5-.2.7-.3a11.717,11.717,0,0,1,3.6-1.2,3.888,3.888,0,0,1,1.9.3A3.509,3.509,0,0,1,56,57.3a5.7,5.7,0,0,1-.3,3.9,28.8,28.8,0,0,1-1.3,3.1l-.3.7a9.492,9.492,0,0,0-.9,2.5c-.9,4.3-.1,14.7.7,17.1a2.817,2.817,0,0,1-.3,2.2A2.723,2.723,0,0,1,51.5,87.7ZM39.2,82.9h9.4c-.7-4.7-1-12.4-.2-16.4A15.943,15.943,0,0,1,49.7,63l.3-.6c.2-.4.3-.8.5-1.2-.1,0-.1.1-.2.1-5.4,2.4-10.6,2.3-15.3-.2a24.907,24.907,0,0,1-4.4-3.2l-.4-.4a5.223,5.223,0,0,0-1.1-.8,10.572,10.572,0,0,0,.7,2.2,13.109,13.109,0,0,0,2,2.8c.5.6.9,1.2,1.4,1.8,3.6,5.1,4.9,12.9,5.7,18C39,82,39.1,82.5,39.2,82.9Zm12.1-24Z"
+                      fill="#0D2F2D"
+                    />
+                    <path
+                      id="Path_73"
+                      data-name="Path 73"
+                      d="M43.4,54.1a12.078,12.078,0,0,1-7.9-21.2,13.221,13.221,0,0,1,5-2.6,9.459,9.459,0,0,0,3.1-2.1l.1-.1a27.592,27.592,0,0,0,5-5.9,33.949,33.949,0,0,0,3.2-5.6c.3-.7.8-1.6,1.1-2.5a2.443,2.443,0,0,1,3.1-1.4L71,18.3a2.293,2.293,0,0,1,1.5,1.8,2.328,2.328,0,0,1-.8,2.3c-.5.5-1.1,1-1.6,1.5-1.6,1.6-3.2,3.3-4.7,5.1a65.45,65.45,0,0,0-5.8,7.8,51.292,51.292,0,0,0-4.9,9.6,12.347,12.347,0,0,1-6.3,6.8A14.259,14.259,0,0,1,43.4,54.1Zm13.3-36-.3.6a52.992,52.992,0,0,1-3.6,6.2,33.563,33.563,0,0,1-5.9,6.8l-.1.1c-1.3,1.1-2.9,2.6-5,3.1a8.239,8.239,0,0,0-3.1,1.6,7.239,7.239,0,0,0,2.2,12.2,7,7,0,0,0,5.5-.2,7.106,7.106,0,0,0,3.8-4A55.18,55.18,0,0,1,55.6,34a89.346,89.346,0,0,1,6.2-8.3c1.3-1.5,2.6-2.9,3.9-4.3Z"
+                      fill="#393e46"
+                    />
+                  </g>
+                </svg>
+              </div>
+              <div class="service-content">
+                <h4>Arthritis</h4>
+                <p>
+                  Don't let joint pain slow you down—our AI-driven arthritis assessment helps you understand risks and take preventive action.
+                </p>
+                <a href="arthritis" class="read-more"
+                  >Start Test  <i class="lni lni-arrow-right"></i
+                ></a>
+              </div>
+              <div class="service-overlay img-bg"></div>
+            </div>
+          </div>
+
+
+
+          <div class="col-lg-4 col-md-6">
+            <div class="service-item mb-30">
+              <div class="service-icon mb-25">
+                <img src="static/img/service_icons/endocrine.png" alt="diabetes Icon" width="55" height="55">
+              </div>
+              <div class="service-content">
+                <h4>Thyroid</h4>
+                <p>
+                  Balance your hormones with an accurate thyroid checkup—AI-powered insights for better energy, mood, and overall wellness.
+                </p>
+                <a href="#" class="read-more"
+                  >Start Test <i class="lni lni-arrow-right"></i
+                ></a>
+              </div>
+              <div class="service-overlay img-bg"></div>
+            </div>
+          </div>
+
+          
+          <div class="col-lg-4 col-md-6">
+            <div class="service-item mb-30">
+              <div class="service-icon mb-25">
+                <svg
+                  id="noun_dental_care_2692540"
+                  data-name="noun_dental care_2692540"
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="70.285"
+                  height="58.102"
+                  viewBox="0 0 70.285 58.102"
+                >
+                  <g id="Group_156" data-name="Group 156">
+                    <path
+                      id="Path_84"
+                      data-name="Path 84"
+                      d="M17.336,17C14.2,22.319,7.223,26.405,0,27.04c0,13.45,3.61,28.3,17.337,32.13C31.061,55.34,34.674,40.489,34.674,27.04,27.373,25.929,20.467,22.319,17.336,17Zm0,37.576c-8.564-2.144-13-15.642-13-24.21,3.65-.224,10.44-2.565,13-7.149,2.561,4.584,9.352,6.925,13,7.149C30.338,38.934,25.9,52.432,17.337,54.576Zm2.144-17.593V32.655h-4.33v4.329h-4.33v4.33h4.33v4.33h4.33v-4.33h4.33v-4.33Z"
+                      transform="translate(0 -1.069)"
+                      fill="#393e46"
+                    />
+                    <path
+                      id="Path_85"
+                      data-name="Path 85"
+                      d="M72.777,7.735a7.668,7.668,0,0,0-2.063-5.6A7.393,7.393,0,0,0,66.72.127,8.515,8.515,0,0,0,65.246,0c-3.365.066-5.6,1.62-9.029,1.58C52.784,1.62,50.545.066,47.185,0a8.411,8.411,0,0,0-1.476.126,7.4,7.4,0,0,0-3.994,2.011,7.667,7.667,0,0,0-2.065,5.6A19.9,19.9,0,0,0,44,20.6a21.726,21.726,0,0,0-.974,6.388,17.447,17.447,0,0,0,1.408,7.128,8.114,8.114,0,0,0,1.477,2.28,3.178,3.178,0,0,0,2.136,1.085v0h.06l.078,0A2.689,2.689,0,0,0,50.2,36.391a11.413,11.413,0,0,0,1.632-3.6c.652-2.094,1.256-4.552,2.039-6.379a7.347,7.347,0,0,1,1.236-2.087,1.47,1.47,0,0,1,1.107-.573c.538-.008,1.086.351,1.761,1.486a35.937,35.937,0,0,1,2.431,6.94A19.3,19.3,0,0,0,61.652,35.5a4.76,4.76,0,0,0,.947,1.289,2.508,2.508,0,0,0,1.652.7H64.3A3.164,3.164,0,0,0,66.519,36.4c1.664-1.776,2.854-5.148,2.886-9.41a21.74,21.74,0,0,0-.974-6.387A19.876,19.876,0,0,0,72.777,7.735ZM65.619,33.029a5.612,5.612,0,0,1-.982,1.551,1.632,1.632,0,0,1-.305.255,6.733,6.733,0,0,1-.978-2.028c-.664-1.912-1.28-4.633-2.2-6.964A10.906,10.906,0,0,0,59.382,22.7a4.163,4.163,0,0,0-3.167-1.568h0a4.787,4.787,0,0,0-4.026,2.79c-1.262,2.2-1.954,5.131-2.675,7.507a17.169,17.169,0,0,1-1.048,2.844,2.546,2.546,0,0,1-.376.561,2.072,2.072,0,0,1-.474-.45c-.927-1.091-2-3.925-1.977-7.4A19.133,19.133,0,0,1,46.7,20.754a1.3,1.3,0,0,0-.236-1.273A17.2,17.2,0,0,1,42.268,7.737a5.021,5.021,0,0,1,1.3-3.753,4.794,4.794,0,0,1,2.587-1.277,5.972,5.972,0,0,1,1.028-.09c2.294-.066,4.822,1.541,9.031,1.58,4.206-.039,6.731-1.646,9.029-1.58a6.188,6.188,0,0,1,1.026.088,4.789,4.789,0,0,1,2.586,1.279,5.021,5.021,0,0,1,1.3,3.753,17.2,17.2,0,0,1-4.194,11.744,1.312,1.312,0,0,0-.239,1.273,19.049,19.049,0,0,1,1.06,6.236A14.968,14.968,0,0,1,65.619,33.029Z"
+                      transform="translate(-2.493 0)"
+                      fill="#0D2F2D"
+                    />
+                  </g>
+                </svg>
+              </div>
+              <div class="service-content">
+                <h4>Dental Surgery</h4>
+                <p>
+                  Keep your smile healthy with AI-powered dental checkups—early detection for stronger teeth and better oral care benefits.
+                </p>
+                <a href="#" class="read-more"
+                  >Start Test <i class="lni lni-arrow-right"></i
+                ></a>
+              </div>
+              <div class="service-overlay img-bg"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!--========================= service-section end ========================= -->
+       <!-- Divider -->
+       <hr style="border: 1px solid #0D2F2D; margin: 50px 0; width: 80%; justify-self: center;">
+       <!-- ========================= testimonial-section start ========================= -->
+       <div>
+         <section id="testimonial" class="team-section pt-150 pb-150" style="padding-top: 50px; padding-bottom: 100px; margin-top: 50px;">
+             <div class="shape shape-5">
+                 <img src="assets/img/shapes/shape-2.svg" alt="">
+             </div>
+             <div class="shape shape-6">
+                 <img src="assets/img/shapes/shape-5.svg" alt="">
+             </div>
+             <div class="container">
+                 <div class="row">
+                     <div class="col-xl-8 mx-auto">
+                         <div class="section-title text-center mb-55">
+                             <h2 class="mb-15 wow fadeInUp" data-wow-delay=".4s">Health Chatbot: Your AI-Powered Health Companion</h2>
+                             <span class="wow fadeInDown" data-wow-delay=".2s">Instant AI-powered assistance for health-related queries</span>
+                             <h2 class="mb-15 wow fadeInUp" data-wow-delay=".4s">Get preliminary health insights based on symptoms</h2>
+                             <p class="wow fadeInUp" data-wow-delay=".6s">Quick, reliable, and personalized responses <br/></p></br>
+                             <a href="http://localhost:3000/" rel="nofollow" class="btn theme-btn">Checkup</a>
+                         </div>
+                     </div>
+                 </div>
+             </div>
+         </section>
+       </div>
+     <!-- ========================= testimonial-section end ========================= -->
+
+
+    <section class="faq-section theme-bg">
+      <div class="container-fluid" style="padding-bottom:40px;">
+        <div class="row">
+          <!-- Left Section: Government Schemes -->
+          <div class="col-md-6">
+            <h1 style="color:white; padding-top:16px; margin-left: 230px; margin-bottom:20px">Quick Links</h1>
+            <div class="custom-container">
+              <div class="row" style="margin-bottom:20px; color:#08bbc4">
+                <div class="col-sm-6">
+                  <div class="card">
+                    <div class="card-body" >
+                      <h5 class="card-title">Ayushman Bharat Pradhan Mantri Jan Arogya Yojana (PM-JAY)</h5>
+                      <a href="https://web.umang.gov.in/landing/department/pradhan-mantri-jan-arogya-yojana.html" target="_blank" class="btn btn" style = "background:#0D2F2D; color:white; border-radius:40px;margin-top:20px">Learn More</a>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-sm-6">
+                  <div class="card">
+                    <div class="card-body" >
+                      <h5 class="card-title">National AIDS Control Programme III (A PM-MODI Initiative)</h5>
+                      <a href="https://naco.gov.in/nacp" target="_blank" class="btn btn" style = "background:#0D2F2D; color:white; border-radius:40px;margin-top:20px">Learn More</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row" style="margin-bottom:20px">
+                <div class="col-sm-6">
+                  <div class="card">
+                    <div class="card-body">
+                      <h5 class="card-title">National Tuberculosis Elimination Programme (NTEP)</h5>
+                      <a href="https://dghs.mohfw.gov.in/national-tuberculosis-elimination-programme.php#:~:text=In%202020%2C%20the%20RNTCP%20was,90%25%20reduction%20in%20mortality" target="_blank"class="btn btn" style = "background:#0D2F2D; color:white; border-radius:40px;margin-top:20px">Learn More</a>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-sm-6">
+                  <div class="card">
+                    <div class="card-body">
+                      <h5 class="card-title">Pradhan Mantri Bhartiya Janaushadhi Pariyojana (PMBJP) </h5>
+                      <a href="https://pib.gov.in/PressReleaseIframePage.aspx?PRID=2067441" target="_blank" class="btn btn" style = "background:#0D2F2D; color:white; border-radius:40px;margin-top:20px">Learn More</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row" style="margin-bottom:20px">
+                <div class="col-sm-6">
+                  <div class="card">
+                    <div class="card-body">
+                      <h5 class="card-title">Pradhan Mantri Swasthya Suraksha Yojna (PMSSY)</h5>
+                      <a href="https://pmssy.mohfw.gov.in/index4.php?lang=1&lid=32&linkid=28&level=0" target="_blank" class="btn btn" style = "background:#0D2F2D; color:white; border-radius:40px;margin-top:20px">Learn More</a>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-sm-6">
+                  <div class="card">
+                    <div class="card-body">
+                      <h5 class="card-title">Ayushman Bharat Digital Mission (ABDM)</h5>
+                      <a href="https://abdm.gov.in/" target="_blank" class="btn btn" style = "background:#0D2F2D; color:white; border-radius:40px;margin-top:20px">Learn More</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+    
+          <!-- Right Section: FAQ -->
+          <div class="col-md-6">
+            <div class="faq-content-wrapper pt-90 pb-90">
+              <div class="section-title">
+                <h1 style="color:white; padding-top:16px; margin-left: 230px; margin-bottom:20px">Useful FAQs</h1>
+              </div>
+              <div class="faq-wrapper accordion" id="accordionExample">
+                <div class="faq-item mb-20">
+                  <div id="headingOne">
+                    <h5 class="mb-0">
+                      <button
+                        class="faq-btn btn"
+                        type="button"
+                        data-toggle="collapse"
+                        data-target="#collapseOne"
+                        aria-expanded="true"
+                        aria-controls="collapseOne"
+                      >
+                      How does Well Scan work? <i class="fa-solid fa-plus"></i> 
+                      </button>
+                    </h5>
+                  </div>
+    
+                  <div
+                    id="collapseOne"
+                    class="collapse show"
+                    aria-labelledby="headingOne"
+                    data-parent="#accordionExample"
+                  >
+                    <div class="faq-content">
+                      Users input their symptoms into the platform, and our AI-powered models analyze the data to predict possible health conditions related to the heart, kidney, diabetes, and arthritis.
+                    </div>
+                  </div>
+                </div>
+                <div class="faq-item mb-20">
+                  <div id="headingTwo">
+                    <h5 class="mb-0">
+                      <button
+                        class="faq-btn btn collapsed"
+                        type="button"
+                        data-toggle="collapse"
+                        data-target="#collapseTwo"
+                        aria-expanded="true"
+                        aria-controls="collapseTwo"
+                      >
+                      Is Well Scan a substitute for a doctor’s diagnosis? <i class="fa-solid fa-plus"></i> 
+                      </button>
+                    </h5>
+                  </div>
+    
+                  <div
+                    id="collapseTwo"
+                    class="collapse"
+                    aria-labelledby="headingTwo"
+                    data-parent="#accordionExample"
+                  >
+                    <div class="faq-content">
+                      No, Well Scan provides predictions based on machine learning models, but it is not a replacement for professional medical advice. Always consult a doctor for an accurate diagnosis.
+                    </div>
+                  </div>
+                </div>
+                <div class="faq-item mb-20">
+                  <div id="headingThree">
+                    <h5 class="mb-0">
+                      <button
+                        class="faq-btn btn collapsed"
+                        type="button"
+                        data-toggle="collapse"
+                        data-target="#collapseThree"
+                        aria-expanded="true"
+                        aria-controls="collapseThree"
+                      >
+                      Does Well Scan provide recommendations after prediction?<i class="fa-solid fa-plus"></i>
+                        </i> 
+                      </button>
+                    </h5>
+                  </div>
+    
+                  <div
+                    id="collapseThree"
+                    class="collapse"
+                    aria-labelledby="headingThree"
+                    data-parent="#accordionExample"
+                  >
+                    <div class="faq-content">
+                      Yes, along with the prediction, Well Scan suggests recommended medical tests, nearby hospitals, pharmacies, and relevant diet charts.
+                    </div>
+                  </div>
+                </div>
+                <div class="faq-item">
+                  <div id="headingFour">
+                    <h5 class="mb-0">
+                      <button
+                        class="faq-btn btn collapsed"
+                        type="button"
+                        data-toggle="collapse"
+                        data-target="#collapseFour"
+                        aria-expanded="true"
+                        aria-controls="collapseFour"
+                      >
+                      Can I consult a doctor through Well Scan? <i class="fa-solid fa-plus"></i> 
+                      </button>
+                    </h5>
+                  </div>
+    
+                  <div
+                    id="collapseFour"
+                    class="collapse"
+                    aria-labelledby="headingFour"
+                    data-parent="#accordionExample"
+                  >
+                    <div class="faq-content">
+                      While Well Scan provides health predictions, it also offers links to online doctor consultations in case you need professional advice.
+                    </div>
+                  </div>
+                </div>
+                
+
+
+                <div class="faq-item mb-20">
+                  <div id="headingFive">
+                    <h5 class="mb-0">
+                      <button
+                        class="faq-btn btn collapsed"
+                        type="button"
+                        data-toggle="collapse"
+                        data-target="#collapseFive"
+                        aria-expanded="true"
+                        aria-controls="collapseFive"
+                      >
+                      Does Well Scan provide recommendations after prediction?<i class="fa-solid fa-plus"></i>
+                        </i> 
+                      </button>
+                    </h5>
+                  </div>
+    
+                  <div
+                    id="collapseFive"
+                    class="collapse"
+                    aria-labelledby="headingFive"
+                    data-parent="#accordionExample"
+                  >
+                    <div class="faq-content">
+                      Yes, along with the prediction, Well Scan suggests recommended medical tests, nearby hospitals, pharmacies, and relevant diet charts.
+                    </div>
+                  </div>
+                </div>
+
+
+
+                <div class="faq-item mb-20">
+                  <div id="headingSix">
+                    <h5 class="mb-0">
+                      <button
+                        class="faq-btn btn collapsed"
+                        type="button"
+                        data-toggle="collapse"
+                        data-target="#collapseSix"
+                        aria-expanded="true"
+                        aria-controls="collapseSix"
+                      >
+                      Does Well Scan provide recommendations after prediction?<i class="fa-solid fa-plus"></i>
+                        </i> 
+                      </button>
+                    </h5>
+                  </div>
+    
+                  <div
+                    id="collapseSix"
+                    class="collapse"
+                    aria-labelledby="headingSix"
+                    data-parent="#accordionExample"
+                  >
+                    <div class="faq-content">
+                      Yes, along with the prediction, Well Scan suggests recommended medical tests, nearby hospitals, pharmacies, and relevant diet charts.
+                    </div>
+                  </div>
+                </div>
+
+
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================= blog-section start ========================= -->
+	<section id="blog" class="blog-section pt-150">
+		<div class="shape shape-7">
+			<img src="static/img/shapes/shape-6.svg" alt="">
+		</div>
+		<div class="container">
+			<div class="row">
+				<div class="col-xl-8 mx-auto">
+					<div class="section-title text-center mb-55">
+						<div class="blog_post">
+              <h2
+                style="
+                  color: white;
+                  font-size: 35px;
+                  font-weight: bold;
+                  text-align: center;
+                  padding: 20px;
+                "
+              >
+                Medical Blogs
+              </h2>
+            </div>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-xl-4 col-lg-4 col-md-6">
+					<div class="single-blog mb-30 wow fadeInUp" data-wow-delay=".2s">
+						<div class="blog-img">
+							<a href="#"><img src="static/img/blog/image1.png" alt=""></a>
+						</div>
+						<div class="blog-content">
+							<h4 style="color:white; background:black; padding:20px; border-radius:5px">Tailored Nutritional Guidance for Your Optimal Health</h4>
+							<p style="text-align:center; background:white; color:black; padding : 10px 10px 10px 10px; border-radius:6px">"For expert nutritional guidance and personalized diet plans, visit The Real Food Dietitian. Their platform offers evidence-based dietary recommendations to help you achieve optimal health and well-being."</p>
+							<a class="read-more" href="https://therealfooddietitians.com/" target="blank_" style="color:white">Read More <i class="lni lni-arrow-right"></i></a>
+						</div>
+					</div>
+				</div>
+				<div class="col-xl-4 col-lg-4 col-md-6">
+					<div class="single-blog mb-30 wow fadeInUp" data-wow-delay=".4s">
+						<div class="blog-img">
+							<a href="#"><img src="static/img/blog/image2.png" alt=""></a>
+						</div>
+						<div class="blog-content">
+							<h4 style="color:white;background:black; padding:20px; border-radius:5px">Explore Expert Insights for a Healthier Lifestyle</h4>
+							<p style="text-align:center; background:white; color:black; padding : 10px 10px 10px 10px; border-radius:6px">"Access the latest medical blogs featuring expert-backed insights, cutting-edge research, and health trends. Stay informed with up-to-date information on wellness, nutrition, and disease prevention for a healthier life."</p>
+							<a class="read-more" href="https://www.maxhealthcare.in/blogs" target="blank_" style="color:white">Read More <i class="lni lni-arrow-right"></i></a>
+						</div>
+					</div>
+				</div>
+				<div class="col-xl-4 col-lg-4 col-md-6">
+					<div class="single-blog mb-30 wow fadeInUp" data-wow-delay=".6s">
+						<div class="blog-img">
+							<a href="#"><img src="static/img/blog/image3.png" alt=""></a>
+						</div>
+						<div class="blog-content">
+							<h4 style="color:white;background:black; padding:20px; border-radius:5px">Get the Latest Insights on Health News & Innovations</h4>
+							<p style="text-align:center; background:white; color:black; padding : 10px 10px 10px 10px; border-radius:6px">"Stay updated with the latest medical advancements, health trends, and expert insights. Explore evidence-based blogs covering wellness, nutrition, and disease prevention for a healthier, informed lifestyle."</p>
+							<a class="read-more" href="https://www.bbc.com/news/health" target="blank_" style="color:white">Read More <i class="lni lni-arrow-right"></i></a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- ========================= blog-section end ========================= -->
+
+    <!-- ========================= footer start ========================= -->
+
+    <footer class="footer">
+      <div class="container-footer">
+        <div class="row">
+          <div class="footer-col">
+            <div class="footer-widget mb-30">
+              <a href="index.html" class="logo"
+                ><img src="static/img/logo/well_scan_logo.jpg" alt=""
+              /></a>
+            </div>
+          </div>
+          <div class="footer-col">
+            <h4>Services</h4>
+            <ul>
+              <li><a href="/heart">Heart Checkup</a></li>
+              <li><a href="/kidney">Kidney Checkup</a></li>
+              <li><a href="/diebetes">Diebetes Checkup</a></li>
+              <li><a href="#">Order Medicine</a></li>
+              <li><a href="#">Find Nearest Collection Centre</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h4>Company</h4>
+            <ul>
+              <li><a href="/about">About Us</a></li>
+              <li><a href="#">Careers</a></li>
+              <li><a href="#">Partner with We'll Scan</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h4>About Team</h4>
+            <ul>
+              <li><a href="/team">Team</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h4>follow us</h4>
+            <div class="social-links">
+              <a href="#"><i class="fab fa-facebook-f"></i></a>
+              <a href="#"><i class="fab fa-twitter"></i></a>
+              <a href="#"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <div class="text-center p-2" style="background-color: #ffff ;color:black; font-weight:bold">
+      © 2025 Copyright @ WellScan.com
+    </div>
+    <!-- ========================= footer end ========================= -->
+
+    <!-- ========================= scroll-top ========================= -->
+
+<a href="#" class="scroll-top">
+  <i class="fa-solid fa-arrow-up"></i>
+</a>  
+
+
+
+  </body>
+  <script src="static/js/bootstrap.bundle-5.0.0.alpha-min.js"></script>
+  <script src="static/js/wow.min.js"></script>
+  <script src="static/js/tiny-slider.js"></script>
+  <script src="static/js/main.js"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.0/js/bootstrap.bundle.min.js"></script>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const adminContainer = document.querySelector(".admin-container");
+      const dropdownMenu = document.querySelector(".dropdown-menu");
+
+      adminContainer.addEventListener("click", function (event) {
+        // Toggle the dropdown menu
+        dropdownMenu.classList.toggle("show");
+
+        // Prevent event bubbling (so clicking inside dropdown doesn't close it)
+        event.stopPropagation();
+      });
+
+      // Close dropdown if clicked outside
+      document.addEventListener("click", function (event) {
+        if (!adminContainer.contains(event.target)) {
+          dropdownMenu.classList.remove("show");
+        }
+      });
+    });
+  </script>
+</html>
